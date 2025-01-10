@@ -1,0 +1,57 @@
+Disease,Type,Fatality,Terms,Treatment
+Transmissible spongiform encephalopathy,Prion,100,prion disease,No cure
+Rabies,Viral,100,rabies,Unvaccinated
+"Plague, pneumonic",Bacterial,100,pneumonic plague,Unvaccinated and untreated
+African trypanosomiasis,Parasitic(protozoan),99,"sleeping sickness, sleepy sickness",Untreated
+Visceral leishmaniasis,Parasitic (protozoan),99,"black fever, kalaazar",Untreated
+Naegleriasis,Amoebic,98.5,"Naegleriasis, meningoencephalitis",Untreated
+"Glanders, septicemic",Bacterial,95%,"Glanders, Glander",Untreated
+Smallpox Variola major – specifically the malignant (flat) or hemorrhagic type,Viral,95,smallpox,Untreated
+Granulomatous amoebic encephalitis,Amoebic,90,"granulomatous amoebic, gae",No cure
+HIV/AIDS,Viral,90,"hiv, aids, hivaids",Untreated
+"Anthrax, pulmonary",Bacterial,85,anthrax,Unvaccinated and untreated
+Lujo virus,Viral,80,Lujo virus,
+B virus,Viral,80,bvirus,Untreated
+"Aspergillosis, invasive pulmonary form",Fungal,50-90,Aspergillosis,
+"Smallpox, Variola major – in pregnant women",Viral,65,smallpox,Unvaccinated
+Influenza A virus subtype H5N1,Viral,53,"Influenza A, Influenza",
+Mucormycosis(Black fungus),Fungal,40-80,"black fungus, black fungi",
+"Tularemia, pneumonic",Bacterial,60,"Tularemia, rabbit fever",Untreated
+Ebola – specifically EBOV,Viral,25-90,ebola,Unvaccinated and untreated
+Marburg virus disease – all outbreaks combined,Viral,23-90,Marburg,Untreated
+Cryptococcal meningitis,Fungal,50,Cryptococcosis,Co-infection with HIV
+"Anthrax, gastrointestinal",Bacterial,50,anthrax,Unvaccinated and untreated
+"Tetanus, Generalized",Bacterial,50,"Tetanus, lockjaw",Unvaccinated and untreated
+"Tuberculosis, HIV Negative",Bacterial,43,Tuberculosis,Vaccinated
+"Plague, septicemic",Bacterial,40,septicemic plague,Unvaccinated and untreated
+Baylisascariasis,Parasitic (helminthous),40,"raccoon roundworm, Baylisascariasis",
+Hantavirus infection,Viral,36,hantaviruses,
+Middle Eastern Respiratory Syndrome(MERS),Viral,34,mers,
+Eastern equine encephalitis,Viral,33,"Triple E, sleeping sickness",
+Bubonic plague,Bacterial,5-60,"bubonic plague, plague",Unvaccinated and untreated
+"Anthrax, gastrointestinal, oropharyngeal type",Bacterial,10-50,anthrax,
+"Smallpox, Variola major",Viral,30,smallpox,Unvaccinated
+"Varicella (chickenpox), in newborns",Viral,30,chickenpox,Untreated
+Dengue haemorrhagic fever (DHF),Viral,26,Dengue fever,Untreated
+Murray Valley encephalitis (MVE),Viral,15-30,MVEV,No cure
+Hantavirus pulmonary syndrome (HPS),Viral,21,hantaviruses,Untreated
+Leptospirosis,Bacterial,5-30,Leptospirosis,Untreated
+Meningococcal disease,Bacterial,10-20,Meningococcal,
+Typhoid fever,Bacterial,10-20,typhoid,Unvaccinated and untreated
+Legionellosis,Bacterial,15,Legionnaires,Unvaccinated and untreated
+Severe acute respiratory syndrome (SARS),Viral,11,sars,
+Intestinal capillariasis,Parasitic (helminthous),10,Intestinal capillariasis,
+Botulism,Bacterial toxin,10,Botulism,Untreated
+"Diphtheria, respiratory",Bacterial,5-10,Diphtheria,
+Yellow fever,Viral,7.5,yellow fever,Treated
+"Pertussis (whooping cough), infants in developing countries",Bacterial,≈3.7%,"Whooping cough, pertussis",Unvaccinated and untreated
+"Cholera, in Africa",Bacterial,2-3,cholera,Unvaccinated
+1918 (Spanish) flu,Viral,2.5-9.7,spanish flu,Unvaccinated
+"Measles (rubeola), in developing countries",Viral,1-3,measles,Vaccinated
+Brucellosis,Bacterial,2,malta fever,
+"Hepatitis A, adults > 50 years old",Viral,1.8,hepatitis,Treated
+Coronavirus disease 2019(COVID-19),Viral,1,coronavirus,
+Lassa fever,Viral,1,lassa fever,Unvaccinated
+Malaria,Parasitic (protozoan),0.3,malaria,Untreated
+Polio,Viral,30,polio,Unvaccinated
+Asian (1956–58) flu,Viral,0.1,asian flu,Unvaccinated & Treated with unspecific treatments
