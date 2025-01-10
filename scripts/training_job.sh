@@ -5,7 +5,8 @@
 #SBATCH --time=10:0:0    
 #SBATCH --mail-type=ALL
 #SBATCH --gpus-per-node=1
-
+# Define project directory
+#project=/path/to/your/project
 cd $project/moralization_temporal
 module purge
 module load python/3.10 scipy-stack
