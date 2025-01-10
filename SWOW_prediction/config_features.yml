@@ -1,0 +1,91 @@
+model_name: 'bert-base-uncased'
+model_saving_dir: './data/SWOW_prediction/models/'
+data_name: 'coha'
+data_path:
+  'coha':
+    './data/COHA.zip'
+  'nyt':
+    './data/NYT/'
+data_features:
+  'coha':
+    year:
+      - 2000
+      - 1990
+      - 1980
+      - 1970
+      - 1960
+      - 1950
+      - 1940
+      - 1930
+      - 1920
+      - 1910
+      - 1900
+      - 1890
+      - 1880
+      - 1870
+      - 1860
+      - 1850
+  'nyt':
+    year:
+      - 2007
+      - 2006
+      - 2005
+      - 2004
+      - 2003
+      - 2002
+      - 2001
+      - 2000
+      - 1999
+      - 1998
+      - 1997
+      - 1996
+      - 1995
+      - 1994
+      - 1993
+      - 1992
+      - 1991
+      - 1990
+      - 1989
+      - 1988
+      - 1987
+test_results_path: ./data/SWOW_prediction/eval/
+learning_rate: 0.01
+gamma: 0.1 
+epsilon: 1.0e-8
+max_length: 200
+take_log: True
+token_strategy: frequency
+graph_strategy: ppmi
+node_neighbors: 100
+device_name: cuda:0
+normalize_swow: True
+graph_version: 2
+swow_version: 1
+two_gram: True
+fill: add
+negative_sampling: True
+negative_sample_num: 200
+add_self_loops: True
+num_epochs: 100
+num_super_epochs: 100
+batch_size: 32
+eval: False
+activation_function: softmax
+graph_encoder: GCN
+graph_encoder_hidden_size: 128
+graph_encoder_out_size: 128
+graph_encoder_num_heads: 4
+graph_encoder_num_layers: 2
+graph_encoder_dropout: 0.1
+graph_encoder_norm: layer
+l1_regularization: 0.001
+loss_function: likelihood_loss
+norm_lambda: 0.0001
+reduce: forward
+property: polarity
+k: 25
+walking_type: sent_prop
+add_linear: False
+train_section: all
+eval_section: 0
+baseline: False
