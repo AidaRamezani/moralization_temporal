@@ -1,0 +1,1968 @@
+word,gpt_score
+accounting,0.1
+art,0.3
+biology,0.1
+biomedical sciences,0.3
+business studies,0.1
+chemistry,0.1
+computer science,0.2
+creative writing,0.2
+criminology,0.3
+drama,0.2
+economics,0.3
+engineering,0.2
+english,0.1
+english language,0.1
+english literature,0.1
+french,0.1
+geography,0.1
+german,0.0
+history,0.2
+i.t.,0.0
+languages,0.1
+law,0.8
+linguistics,0.1
+management,0.3
+mandarin,0.0
+marketing,0.2
+maths,0.1
+media studies,0.0
+medicine,0.7
+music,0.2
+pe,0.9
+philosophy,0.3
+physics,0.1
+politics,0.5
+psychology,0.2
+religious studies,0.2
+science,0.2
+sociology,0.2
+spanish,0.0
+sports science,0.3
+statistics,0.1
+absinthe,0.2
+alcopop,0.3
+ale,0.1
+bacardi,0.1
+baileys,0.1
+beer,0.2
+brandy,0.2
+champagne,0.1
+cider,0.1
+cocktail,0.2
+gin,0.1
+jagerbomb,0.2
+jagermeister,0.1
+lager,0.1
+liqueur,0.1
+malibu,0.0
+mead,0.1
+pink wine,0.2
+port,0.1
+red wine,0.2
+rum,0.2
+schnapps,0.1
+sex on the beach,0.6
+sherry,0.1
+southern comfort,0.2
+tequila,0.2
+vodka,0.2
+whiskey,0.2
+white wine,0.1
+wine,0.2
+ant,0.05
+antelope,0.1
+ape,0.0
+badger,0.1
+bat,0.0
+bear,0.2
+bird,0.1
+butterfly,0.1
+camel,0.0
+cat,0.1
+cheetah,0.1
+chicken,0.3
+chimpanzee,0.5
+cow,0.3
+deer,0.2
+dog,0.2
+dolphin,0.2
+donkey,0.1
+duck,0.1
+eagle,0.1
+elephant,0.3
+ferret,0.1
+fish,0.2
+flamingo,0.05
+fox,0.1
+frog,0.1
+gazelle,0.1
+gerbil,0.1
+giraffe,0.05
+goat,0.1
+goose,0.1
+gorilla,0.3
+guinea pig,0.2
+hamster,0.1
+hedgehog,0.1
+hippo,0.1
+horse,0.1
+human,0.8
+insect,0.2
+jaguar,0.0
+kangaroo,0.05
+koala,0.1
+lemur,0.1
+leopard,0.1
+lion,0.0
+lizard,0.1
+meerkat,0.05
+monkey,0.2
+mouse,0.1
+panda,0.1
+penguin,0.1
+pig,0.2
+pigeon,0.1
+polar bear,0.2
+rabbit,0.1
+raccoon,0.1
+rat,0.2
+rhino,0.6
+seagull,0.1
+shark,0.1
+sheep,0.1
+sloth,0.3
+snake,0.2
+squirrel,0.1
+swan,0.1
+tiger,0.2
+whale,0.5
+wolf,0.2
+zebra,0.05
+architecture,0.1
+dance,0.1
+drawing,0.1
+model,0.0
+movies,0.2
+painting,0.1
+poetry,0.1
+pottery,0.1
+sculpture,0.1
+singing,0.1
+sketch,0.1
+statue,0.2
+theatre,0.1
+watercolour,0.05
+writing,0.1
+abstract,0.1
+cubism,0.1
+gymnastics,0.1
+impressionism,0.1
+modern art,0.2
+pop art,0.0
+postmodernism,0.2
+realism,0.2
+bath,0.1
+bath mat,0.05
+bidet,0.1
+blind,0.2
+cabinet,0.1
+cupboard,0.05
+door,0.05
+light,0.1
+light fittings,0.05
+mirror,0.05
+radiator,0.05
+shower,0.1
+shower curtain,0.05
+sink,0.05
+tap,0.05
+toilet,0.1
+toilet roll holder,0.05
+towel rail,0.05
+window,0.05
+blackbird,0.1
+blue tit,0.0
+bluebird,0.05
+budgie,0.0
+canary,0.05
+crow,0.1
+dove,0.1
+finch,0.1
+gannet,0.05
+goldfinch,0.05
+great tit,0.0
+hawk,0.0
+hummingbird,0.1
+jackdaw,0.0
+magpie,0.1
+ostrich,0.02
+owl,0.1
+parrot,0.05
+raven,0.05
+robin,0.1
+sparrow,0.1
+starling,0.1
+stork,0.05
+swallow,0.0
+toucan,0.05
+turkey,0.0
+vulture,0.1
+wagtail,0.01
+woodpecker,0.05
+buzzard,0.05
+falcon,0.1
+kite,0.05
+canal boat,0.1
+canoe,0.05
+cruise ship,0.2
+dinghy,0.1
+ferry,0.1
+fishing boat,0.2
+kayak,0.05
+lifeboat,0.2
+motorboat,0.1
+paddle boat,0.05
+pedalo,0.0
+rowing boat,0.1
+sailing boat,0.1
+ship,0.1
+speedboat,0.05
+yacht,0.1
+atlantic ocean,0.1
+canal,0.05
+lake,0.1
+ocean,0.2
+pacific ocean,0.1
+pond,0.1
+pool,0.1
+puddle,0.05
+reservoir,0.1
+river,0.1
+sea,0.1
+stream,0.1
+swamp,0.05
+swimming pool,0.1
+action,0.0
+adventure,0.2
+autobiography,0.1
+biography,0.1
+children's,0.8
+comedy,0.2
+contemporary,0.1
+crime,0.95
+fantasy,0.1
+fiction,0.2
+historical,0.2
+horror,0.0
+mystery,0.2
+non-fiction,0.1
+novel,0.1
+romance,0.3
+sci-fi,0.1
+thriller,0.1
+young adult,0.2
+beagle,0.1
+border collie,0.2
+boxer,0.2
+bulldog,0.1
+chao chao,0.0
+chihuahua,0.1
+cocker spaniel,0.1
+cockerpoo,0.0
+dachshund,0.1
+dalmatian,0.1
+english bulldog,0.0
+french bulldog,0.1
+german shepherd,0.2
+golden retriever,0.1
+great dane,0.05
+greyhound,0.1
+husky,0.2
+jack russell,0.0
+king charles spaniel,0.1
+labradoodle,0.1
+labrador,0.1
+pitbull,0.3
+poodle,0.1
+pug,0.1
+rottweiler,0.3
+samoyed,0.1
+sausage dog,0.1
+sheepdog,0.1
+shih-tzu,0.1
+spaniel,0.1
+springer spaniel,0.1
+st bernard,0.1
+staffie,0.2
+terrier,0.1
+westie,0.0
+yorkshire terrier,0.1
+apartment,0.1
+apartment block,0.1
+bungalow,0.05
+bus station,0.1
+castle,0.1
+cathedral,0.2
+chalet,0.1
+church,0.5
+cinema,0.1
+cottage,0.1
+dentist,0.1
+detached,0.1
+doctor's,0.2
+factory,0.3
+flats,0.0
+hospital,0.8
+house,0.1
+library,0.1
+mansion,0.2
+mosque,0.2
+museum,0.1
+offices,0.1
+post office,0.1
+restaurant,0.1
+school,0.2
+semi-detached,0.05
+shed,0.1
+shop,0.2
+skyscraper,0.1
+synagogue,0.4
+terrace,0.05
+tower,0.05
+train station,0.1
+university,0.2
+bamboo,0.05
+blocks,0.05
+bricks,0.05
+cement,0.01
+concrete,0.05
+glass,0.05
+hammer,0.05
+insulation,0.1
+metal,0.1
+mortar,0.0
+nails,0.05
+plaster,0.1
+plastic,0.2
+steel,0.1
+stone,0.05
+tiles,0.05
+timber,0.1
+wood,0.1
+airbed,0.1
+blanket,0.05
+caravan,0.0
+deckchairs,0.05
+fire,0.2
+food,0.3
+hiking boots,0.05
+matches,0.05
+pans,0.05
+pegs,0.05
+pillow,0.05
+portable chair,0.05
+portable stove,0.2
+pots,0.05
+roll mat,0.1
+rope,0.1
+rucksack,0.05
+sleeping bag,0.1
+sleeping mat,0.1
+tent,0.1
+tent poles,0.1
+torch,0.0
+trangia,0.0
+waterproofs,0.05
+chainsaw,0.1
+chisel,0.05
+drill,0.1
+file,0.1
+knife,0.3
+pliers,0.05
+ruler,0.0
+saw,0.05
+screwdriver,0.05
+screws,0.05
+spanner,0.1
+spirit level,0.05
+tape measure,0.05
+aluminium,0.05
+argon,0.01
+arsenic,0.8
+beryllium,0.05
+boron,0.05
+bromine,0.05
+caesium,0.1
+calcium,0.1
+carbon,0.7
+chlorine,0.1
+cobalt,0.1
+copper,0.1
+fluoride,0.2
+gold,0.2
+h2o,0.1
+helium,0.05
+hydrogen,0.05
+iodine,0.1
+iron,0.05
+lead,0.1
+lithium,0.2
+magnesium,0.05
+neon,0.1
+nickel,0.05
+nitrogen,0.05
+oxygen,0.1
+potassium,0.05
+selenium,0.1
+silver,0.1
+sodium,0.1
+sulphur,0.1
+tin,0.05
+titanium,0.05
+uranium,0.4
+zinc,0.05
+blood orange,0.05
+clementine,0.05
+grapefruit,0.05
+kiwi,0.1
+lemon,0.02
+lime,0.05
+orange,0.05
+pineapple,0.1
+satsuma,0.05
+tangerine,0.05
+belt,0.05
+blouse,0.1
+boots,0.05
+bra,0.2
+cap,0.0
+cardigan,0.05
+chinos,0.05
+coat,0.05
+dress,0.1
+dungarees,0.05
+evening dress,0.1
+gilet,0.0
+gloves,0.1
+hat,0.05
+heels,0.1
+hoodie,0.1
+jacket,0.05
+jeans,0.1
+joggers,0.1
+jumper,0.0
+knickers,0.1
+leggings,0.1
+overcoat,0.05
+pants,0.05
+scarf,0.05
+shirt,0.05
+shoes,0.1
+shorts,0.1
+skirt,0.1
+skort,0.1
+socks,0.05
+sportswear,0.1
+suit,0.1
+sweater,0.1
+sweatshirt,0.1
+swimming costume,0.1
+t-shirt,0.05
+tank top,0.1
+tie,0.05
+tights,0.1
+top,0.0
+tracksuit,0.1
+trainers,0.1
+trousers,0.05
+underwear,0.0
+vest,0.1
+vest top,0.1
+amber,0.05
+beige,0.01
+black,0.3
+blue,0.01
+brown,0.1
+burgundy,0.1
+green,0.1
+grey,0.05
+indigo,0.02
+lilac,0.05
+magenta,0.01
+maroon,0.0
+navy,0.3
+pink,0.05
+purple,0.01
+red,0.05
+teal,0.01
+turquoise,0.01
+violet,0.1
+white,0.0
+yellow,0.01
+blusher,0.1
+bronzer,0.1
+concealer,0.2
+conditioner,0.1
+contour,0.05
+cream,0.05
+eyebrow pencil,0.05
+eyeliner,0.1
+eyeshadow,0.1
+fake tan,0.2
+foundation,0.2
+highlighter,0.05
+lip gloss,0.05
+lip liner,0.05
+lipstick,0.1
+makeup,0.2
+mascara,0.1
+nail varnish,0.1
+perfume,0.1
+powder,0.1
+primer,0.1
+shampoo,0.05
+surgery,0.7
+antisocial behaviour,0.8
+arson,0.95
+assault,0.95
+attempted murder,1.0
+burglary,0.9
+domestic violence,1.0
+embezzlement,0.95
+fraud,0.85
+grievous bodily harm,0.95
+hate crime,0.95
+kidnap,0.95
+knife crime,0.95
+littering,0.85
+manslaughter,0.95
+murder,1.0
+possession of drugs,0.6
+rape,1.0
+robbery,0.95
+sexual assault,1.0
+shoplifting,0.85
+stealing,0.95
+tax evasion,0.8
+theft,0.95
+vandalism,0.85
+violence,0.9
+butter,0.05
+cheese,0.1
+chocolate,0.1
+eggs,0.1
+ice cream,0.1
+margarine,0.1
+milk,0.1
+sour cream,0.1
+whipped cream,0.1
+yoghurt,0.1
+friday,0.05
+monday,0.1
+saturday,0.1
+sunday,0.1
+thursday,0.05
+tuesday,0.05
+wednesday,0.05
+aids,0.6
+cancer,0.9
+chickenpox,0.1
+chlamydia,0.2
+cholera,0.3
+cold,0.05
+diabetes,0.0
+ebola,0.4
+flu,0.3
+heart disease,0.7
+hiv,0.8
+leukemia,0.1
+malaria,0.2
+measles,0.8
+meningitis,0.1
+mumps,0.1
+plague,0.9
+polio,0.2
+rubella,0.2
+smallpox,0.85
+std,0.6
+tb,0.1
+tumour,0.2
+typhoid,0.9
+alcohol,0.5
+antibiotics,0.3
+benzodiazepine,0.7
+caffeine,0.2
+calpol,0.1
+cannabis,0.4
+cocaine,0.8
+cocodamol,0.2
+codeine,0.5
+ecstasy,0.7
+heroin,0.85
+ibuprofen,0.1
+illegal,0.6
+legal,0.2
+lsd,0.6
+mdma,0.6
+meth,0.85
+morphine,0.7
+naproxen,0.1
+nicotine,0.7
+opium,0.8
+paracetamol,0.1
+speed,0.2
+angry,0.2
+anxious,0.2
+content,0.1
+depressed,0.1
+disappointment,0.3
+disgusted,0.2
+ecstatic,0.1
+excited,0.1
+fear,0.3
+frustration,0.2
+grief,0.7
+happy,0.1
+jealous,0.6
+joy,0.2
+lonely,0.1
+love,0.8
+miserable,0.0
+nervous,0.1
+overjoyed,0.1
+relieved,0.1
+sad,0.1
+shock,0.2
+shy,0.2
+surprise,0.1
+thrilled,0.1
+upset,0.2
+worried,0.2
+cashmere,0.2
+cloth,0.1
+cotton,0.1
+denim,0.1
+felt,0.05
+fur,0.6
+leather,0.4
+linen,0.1
+lycra,0.1
+nylon,0.1
+polyester,0.1
+satin,0.05
+silk,0.1
+velvet,0.05
+wool,0.1
+auntie,0.2
+brother,0.2
+brother-in-law,0.0
+children,0.85
+cousin,0.1
+daughter,0.8
+distant relatives,0.2
+father,0.3
+father-in-law,0.0
+granddaughter,0.1
+grandfather,0.2
+grandma,0.0
+grandparents,0.2
+grandson,0.1
+great aunt,0.1
+great grandfather,0.1
+great grandmother,0.0
+great grandparents,0.1
+great nephew,0.0
+great niece,0.1
+great uncle,0.1
+half brother,0.0
+half sister,0.1
+husband,0.2
+mother,0.8
+mother-in-law,0.0
+nephew,0.1
+niece,0.1
+parents,0.7
+second cousin,0.1
+siblings,0.3
+sister,0.0
+sister-in-law,0.1
+son,0.1
+stepbrother,0.0
+stepdad,0.0
+stepmum,0.2
+stepparents,0.2
+stepsister,0.1
+third cousins,0.1
+uncle,0.1
+wife,0.2
+bull,0.0
+geese,0.1
+hen,0.1
+lamb,0.1
+llama,0.05
+angelfish,0.05
+bass,0.0
+carp,0.05
+catfish,0.7
+clownfish,0.05
+cod,0.1
+goldfish,0.1
+haddock,0.05
+hake,0.1
+herring,0.05
+jellyfish,0.1
+koi carp,0.1
+lobster,0.2
+mackerel,0.05
+mussel,0.1
+parrotfish,0.1
+plaice,0.1
+prawn,0.1
+pufferfish,0.1
+salmon,0.1
+sardine,0.1
+squid,0.1
+swordfish,0.1
+trout,0.1
+tuna,0.2
+bluebell,0.05
+buttercup,0.05
+carnation,0.05
+daffodil,0.05
+daisy,0.05
+dandelion,0.05
+lavender,0.05
+lily,0.05
+orchid,0.05
+pansy,0.1
+petunia,0.01
+poppy,0.2
+rhododendron,0.01
+rose,0.05
+snowdrop,0.05
+sunflower,0.05
+tulip,0.05
+violets,0.1
+anteater,0.1
+bison,0.1
+crocodile,0.2
+puma,0.1
+reindeer,0.1
+bike with stabilisers,0.1
+bus,0.1
+car,0.2
+coach,0.1
+dune buggy,0.1
+gokart,0.1
+jeep,0.1
+lorry,0.05
+plane,0.1
+quad bike,0.2
+tractor,0.05
+truck,0.1
+van,0.1
+eighth,0.05
+fifth,0.05
+five eighths,0.0
+four eighths,0.0
+four fifths,0.0
+half,0.05
+ninth,0.05
+piece,0.05
+quarter,0.05
+seven eighths,0.01
+seventh,0.01
+six eighths,0.75
+six sevenths,0.0
+sixth,0.1
+tenth,0.05
+third,0.05
+three eighths,0.0
+three quarters,0.01
+twelfth,0.01
+two eighths,1.0
+two fifths,0.1
+two sevenths,0.02
+two sixths,0.0
+two thirds,0.1
+apple,0.1
+apricot,0.01
+avocado,0.05
+banana,0.05
+blackberries,0.1
+blackcurrants,0.0
+blueberries,0.05
+cherries,0.05
+coconut,0.05
+cucumber,0.01
+dates,0.2
+dragon fruit,0.05
+gooseberry,0.05
+grape,0.05
+guava,0.05
+mango,0.1
+melon,0.05
+nectarine,0.05
+papaya,0.05
+passion fruit,0.05
+peach,0.05
+pear,0.1
+plum,0.05
+pomegranate,0.05
+raisin,0.05
+raspberries,0.1
+redcurrant,0.1
+strawberry,0.1
+sultanas,0.05
+tomato,0.1
+watermelon,0.05
+biofuel,0.6
+butane,0.1
+coal,0.6
+diesel,0.3
+electricity,0.1
+gas,0.3
+gasoline,0.6
+jet fuel,0.3
+kerosene,0.2
+oil,0.5
+petrol,0.3
+rocket fuel,0.1
+armchair,0.05
+bed,0.1
+bedside table,0.05
+bookcase,0.05
+bookshelf,0.05
+chair,0.05
+chest of drawers,0.05
+coffee table,0.05
+desk,0.01
+dining table,0.05
+drawers,0.1
+footstool,0.05
+fridge,0.05
+futon,0.1
+lamp,0.01
+shelves,0.05
+sofa,0.05
+stool,0.05
+table,0.05
+tv,0.1
+tv stand,0.05
+wardrobe,0.05
+brush,0.05
+bucket,0.01
+fork,0.05
+gardening gloves,0.05
+hedge trimmer,0.05
+hoe,0.2
+hose,0.05
+lawnmower,0.1
+pesticides,0.5
+rake,0.05
+secateurs,0.05
+shears,0.05
+shovel,0.05
+spade,0.0
+strimmer,0.05
+trowel,0.05
+amethyst,0.05
+diamond,0.2
+emerald,0.1
+garnet,0.05
+onyx,0.05
+opal,0.05
+pearl,0.05
+quartz,0.05
+ruby,0.05
+sapphire,0.05
+topaz,0.05
+circle,0.05
+cube,0.02
+decagon,0.05
+dodecahedron,0.0
+hectagon,0.0
+heptagon,0.01
+hexagon,0.01
+nonagon,0.05
+octagon,0.01
+pentagon,0.2
+rectangle,0.01
+rhombus,0.05
+square,0.05
+trapezium,0.05
+triangle,0.01
+beans,0.1
+broccoli,0.05
+brussels sprouts,0.1
+cabbage,0.05
+celery,0.05
+courgette,0.05
+green beans,0.1
+green pepper,0.05
+kale,0.1
+leek,0.05
+lettuce,0.05
+mange tout,0.0
+peas,0.1
+peppers,0.1
+rocket,0.1
+spinach,0.05
+spring onions,0.1
+sugar snap peas,0.1
+auburn,0.01
+blonde,0.1
+brunette,0.01
+ginger,0.1
+light brown,0.05
+mousy,0.0
+strawberry blonde,0.1
+baseball cap,0.1
+beanie,0.1
+beret,0.05
+bobble hat,0.05
+bowler hat,0.05
+bucket hat,0.1
+fedora,0.05
+flat cap,0.1
+hard hat,0.1
+santa hat,0.1
+snapback,0.1
+sombrero,0.05
+straw hat,0.05
+sun hat,0.05
+top hat,0.05
+woolly hat,0.05
+carer,0.7
+consultant,0.1
+dermatologist,0.1
+doctor,0.7
+gp,0.0
+gynaecologist,0.2
+healthcare assistant,0.3
+medical assistant,0.0
+midwife,0.0
+nurse,0.8
+optician,0.05
+optometrist,0.1
+paediatrician,0.1
+pharmacist,0.2
+physio,0.0
+psychiatrist,0.2
+psychologist,0.1
+radiographer,0.1
+radiologist,0.1
+speech and language therapist,0.0
+surgeon,0.0
+therapist,0.3
+basil,0.1
+bay leaf,0.1
+cinnamon,0.05
+coriander,0.1
+dill,0.01
+fennel,0.1
+garlic,0.05
+mint,0.1
+oregano,0.05
+parsley,0.05
+pepper,0.1
+rosemary,0.05
+sage,0.1
+salt,0.05
+thyme,0.05
+attic,0.05
+caves,0.1
+flat,0.0
+hotel,0.1
+hut,0.1
+igloo,0.05
+mobile home,0.1
+teepee,0.1
+town,0.1
+village,0.1
+bubonic plague,0.95
+tonsillitis,0.05
+zika virus,0.3
+blister,0.1
+broken arm,0.1
+broken bone,0.1
+broken leg,0.1
+bruise,0.1
+burn,0.3
+concussion,0.7
+cut,0.0
+fall,0.05
+fracture,0.1
+graze,0.0
+head injury,0.8
+pulled muscle,0.05
+scab,0.6
+scrape,0.05
+sprain,0.1
+stab wound,0.9
+strain,0.1
+torn ligament,0.1
+wound,0.7
+bee,0.2
+beetle,0.05
+bumblebee,0.1
+caterpillar,0.1
+centipede,0.1
+cockroach,0.3
+cricket,0.1
+daddy-long-legs,0.1
+dragonfly,0.1
+dung beetle,0.05
+earwig,0.1
+fly,0.1
+grasshopper,0.1
+greenfly,0.0
+housefly,0.05
+ladybird,0.01
+millipede,0.0
+mosquito,0.2
+moth,0.1
+scorpions,0.2
+spider,0.1
+stick insect,0.05
+wasp,0.1
+woodlouse,0.0
+worm,0.1
+anklet,0.1
+bangle,0.05
+belly button rings,0.2
+body jewellery,0.3
+bracelet,0.1
+choker,0.05
+earrings,0.1
+necklace,0.1
+nose ring,0.2
+piercing,0.3
+ring,0.0
+tiara,0.05
+toe rings,0.1
+watch,0.1
+blender,0.05
+bowl,0.05
+bread maker,0.1
+colander,0.05
+dishwasher,0.1
+food processor,0.05
+freezer,0.1
+grill,0.1
+hob,0.05
+kettle,0.05
+kitchen knife,0.2
+microwave,0.1
+mixer,0.1
+oven,0.05
+pan,0.0
+plate,0.05
+pot,0.4
+sandwich maker,0.1
+sieve,0.05
+smoothie maker,0.1
+spatula,0.05
+spoon,0.05
+stove,0.05
+toaster,0.05
+toastie maker,0.0
+washing machine,0.05
+weighing scales,0.1
+whisk,0.01
+bottle opener,0.1
+bread knife,0.0
+butter knife,0.1
+can opener,0.05
+carving knife,0.2
+chopping board,0.05
+frying pan,0.05
+ladle,0.05
+plates,0.05
+rolling pin,0.05
+tablespoon,0.01
+teaspoon,0.05
+tongs,0.05
+wooden spoon,0.05
+barrister,0.0
+clerk,0.1
+defence lawyer,0.4
+judge,0.4
+jury,0.7
+lawyer,0.2
+magistrate,0.2
+paralegal,0.1
+policeman,0.5
+prosecutor,0.5
+solicitor,0.2
+carpet,0.05
+clock,0.05
+computer,0.1
+fireplace,0.1
+pictures,0.1
+rug,0.05
+side table,0.05
+television,0.2
+vase,0.05
+bacon,0.2
+beef,0.3
+gammon,0.0
+ham,0.2
+liver,0.1
+mutton,0.2
+pork,0.3
+sausages,0.2
+seafood,0.2
+steak,0.2
+veal,0.7
+venison,0.2
+anaesthetist,0.1
+audiologist,0.1
+brain surgeon,0.2
+cardiac,0.1
+neurology,0.1
+orthodontist,0.05
+orthopaedic,0.1
+paediatric,0.2
+psychological,0.0
+radiology,0.1
+brass,0.05
+bronze,0.1
+platinum,0.05
+captain,0.1
+chief,0.1
+colonel,0.1
+commander,0.2
+corporal,0.2
+general,0.1
+lieutenant,0.2
+major,0.0
+officer,0.2
+private,0.2
+senior,0.0
+sergeant,0.3
+sergeant major,0.0
+soldier,0.6
+april,0.1
+august,0.05
+december,0.1
+february,0.01
+january,0.1
+july,0.05
+june,0.05
+march,0.3
+may,0.1
+november,0.1
+october,0.1
+september,0.1
+bass guitar,0.1
+bassoon,0.1
+bongos,0.1
+cello,0.0
+clarinet,0.1
+cornet,0.05
+double bass,0.05
+drums,0.1
+electric guitar,0.1
+flute,0.1
+french horn,0.05
+guitar,0.1
+harmonica,0.1
+harp,0.05
+keyboard,0.05
+maracas,0.05
+oboe,0.05
+organ,0.6
+percussion,0.05
+piano,0.05
+recorder,0.1
+saxophone,0.05
+trombone,0.1
+trumpet,0.1
+tuba,0.1
+viola,0.1
+violin,0.1
+voice,0.4
+xylophone,0.05
+beaches,0.1
+cave,0.1
+cliff,0.05
+desert,0.1
+drumlin,0.01
+glaciers,0.3
+hill,0.05
+island,0.1
+mountain,0.1
+oceans,0.3
+valley,0.1
+volcano,0.1
+anger,0.3
+annoyed,0.2
+anxiety,0.1
+despair,0.2
+disgust,0.7
+envy,0.7
+greed,0.8
+hatred,0.8
+hopelessness,0.6
+isolation,0.4
+jealousy,0.5
+overwhelmed,0.2
+sadness,0.3
+stress,0.2
+unhappy,0.2
+abrupt,0.1
+aggressive,0.6
+annoying,0.2
+arrogant,0.6
+dismissive,0.2
+ignorant,0.3
+inconsiderate,0.7
+irritable,0.2
+judgemental,0.6
+loud,0.2
+lying,0.85
+mean,0.6
+moody,0.1
+narcissistic,0.7
+pessimistic,0.2
+rude,0.7
+selfish,0.7
+unempathetic,0.7
+mental abuse,0.9
+speeding,0.6
+verbal abuse,0.85
+acorn,0.05
+almonds,0.1
+brazil nut,0.1
+cashew nut,0.05
+chestnut,0.05
+hazelnut,0.02
+macadamia,0.1
+monkey nut,0.0
+peanut,0.1
+pistachio,0.05
+walnut,0.05
+anchor,0.1
+bow,0.1
+cabin,0.1
+deck,0.05
+engine,0.1
+flag,0.3
+hull,0.1
+keel,0.0
+mast,0.05
+oar,0.01
+propeller,0.05
+rigging,0.8
+rudder,0.1
+sail,0.1
+starboard,0.01
+stern,0.1
+wheel,0.1
+bathroom,0.1
+beams,0.05
+ceiling,0.05
+corridor,0.05
+elevators,0.05
+entrance,0.1
+exit,0.1
+floor,0.05
+foundations,0.0
+hall,0.05
+outer wall,0.0
+reception,0.1
+roof,0.1
+rooms,0.1
+stairs,0.05
+wall,0.1
+window frame,0.05
+bark,0.05
+branch,0.05
+flowers,0.1
+fruit,0.1
+leaves,0.05
+roots,0.1
+sap,0.1
+stem,0.0
+stump,0.05
+trunk,0.1
+twigs,0.02
+ankle,0.05
+arm,0.0
+back,0.0
+blood,0.3
+bones,0.2
+brain,0.1
+calf,0.1
+chest,0.1
+ears,0.05
+elbows,0.1
+eyes,0.1
+face,0.1
+feet,0.1
+finger,0.05
+fingers,0.05
+genitals,0.2
+hair,0.1
+hands,0.1
+head,0.0
+heart,0.1
+hip,0.1
+intestines,0.1
+kidney,0.3
+knees,0.05
+legs,0.05
+lungs,0.1
+mouth,0.1
+neck,0.1
+nose,0.05
+organs,0.7
+pelvis,0.1
+ribs,0.1
+shin,0.01
+shoulders,0.05
+skeleton,0.2
+skin,0.0
+spine,0.1
+stomach,0.1
+teeth,0.1
+thighs,0.1
+toes,0.05
+tongue,0.1
+torso,0.05
+waist,0.1
+beard,0.1
+cheek,0.1
+cheekbones,0.05
+cheeks,0.05
+chin,0.05
+dimples,0.05
+earlobe,0.05
+eyebrows,0.05
+eyelashes,0.05
+eyelids,0.01
+forehead,0.0
+hairline,0.05
+iris,0.05
+jaw,0.05
+lips,0.1
+moustache,0.1
+nostrils,0.05
+pupils,0.1
+academic,0.2
+brave,0.4
+bubbly,0.1
+caring,0.85
+charismatic,0.2
+confident,0.2
+empathetic,0.85
+extrovert,0.0
+friendly,0.2
+funny,0.2
+generous,0.8
+hardworking,0.2
+honest,0.85
+intelligent,0.2
+introverted,0.2
+kind,0.7
+lazy,0.4
+nice,0.5
+open,0.0
+optimistic,0.2
+outgoing,0.1
+positive,0.1
+quiet,0.1
+selfless,0.8
+social,0.2
+standoffish,0.1
+understanding,0.2
+warm,0.1
+communism,0.7
+conservative,0.4
+democracy,0.8
+democrat,0.2
+dictatorship,0.85
+first past the post,0.2
+liberal,0.5
+liberal democrats,0.2
+monarchy,0.4
+proportional representation,0.2
+socialism,0.6
+calm,0.1
+cheerful,0.1
+enthusiastic,0.1
+joyful,0.1
+laughing,0.1
+smiling,0.2
+approachable,0.1
+dedication,0.2
+determined,0.0
+empathy,0.9
+gentle,0.1
+helpful,0.8
+humility,0.7
+humour,0.2
+independent,0.2
+loving,0.85
+loyal,0.7
+motivated,0.1
+non-judgemental,0.3
+patient,0.2
+polite,0.6
+reliable,0.2
+thoughtful,0.3
+trustworthy,0.85
+eleven,0.01
+fifty-one,0.05
+fifty-seven,0.05
+fifty-three,0.02
+five,0.1
+forty-one,0.01
+forty-seven,0.01
+forty-three,0.01
+nine,0.05
+nineteen,0.05
+one,0.1
+seven,0.1
+seventeen,0.05
+sixty-seven,0.01
+thirteen,0.1
+thirty-one,0.01
+thirty-seven,0.05
+three,0.05
+twenty-nine,0.01
+twenty-three,0.01
+two,0.01
+actor,0.1
+actress,0.1
+babysitter,0.2
+baker,0.1
+bartender,0.2
+builder,0.1
+bus driver,0.0
+businessman,0.3
+carpenter,0.1
+cashier,0.1
+ceo,0.3
+chef,0.1
+cleaner,0.2
+dancer,0.1
+driver,0.2
+engineer,0.1
+firefighter,1.0
+hairdresser,0.1
+lecturer,0.1
+librarian,0.1
+manager,0.2
+paramedic,0.2
+plumber,0.1
+politician,0.7
+professor,0.0
+receptionist,0.1
+scientist,0.2
+secretary,0.2
+shop assistant,0.2
+singer,0.2
+teacher,0.3
+technician,0.1
+waitress,0.0
+writer,0.1
+adhd,0.1
+alzheimer's,0.2
+anorexia,0.7
+autism,0.2
+bipolar disorder,0.2
+bulimia,0.7
+dementia,0.2
+depression,0.7
+eating disorder,0.8
+manic depression,0.2
+ocd,0.1
+personality disorder,0.2
+psychosis,0.1
+schizophrenia,0.1
+badminton,0.0
+lacrosse,0.1
+racquetball,0.05
+squash,0.1
+table tennis,0.05
+tennis,0.1
+article,0.1
+blog,0.1
+book,0.1
+comic,0.1
+diary,0.1
+email,0.1
+flyer,0.1
+internet article,0.2
+journal,0.1
+journal article,0.1
+leaflets,0.0
+letter,0.1
+magazine,0.1
+newspaper,0.1
+pamphlet,0.1
+poster,0.05
+script,0.0
+story,0.1
+textbook,0.05
+transcript,0.1
+website,0.1
+atheism,0.3
+baha'i,0.4
+buddhism,0.3
+catholicism,0.6
+christianity,0.6
+hinduism,0.3
+islam,0.5
+jainism,0.3
+judaism,0.3
+mormonism,0.6
+paganism,0.5
+protestant,0.2
+scientology,0.6
+sikhism,0.6
+taoism,0.3
+chapel,0.3
+gurdwara,0.2
+monastery,0.3
+prayer room,0.6
+temple,0.6
+vatican,0.6
+chinchilla,0.05
+back room,0.2
+basement,0.1
+bedroom,0.05
+computer room,0.1
+conservatory,0.1
+dining room,0.05
+front room,0.05
+garage,0.05
+hallway,0.05
+kitchen,0.05
+laundry room,0.05
+living room,0.05
+lounge,0.1
+office,0.05
+playroom,0.1
+porch,0.1
+shower room,0.1
+stairway,0.05
+study,0.1
+utility area,0.0
+washroom,0.1
+baron,0.2
+baroness,0.0
+dame,0.1
+duchess,0.1
+duke,0.1
+highness,0.0
+king,0.1
+knight,0.2
+lord,0.2
+prince,0.1
+princess,0.2
+queen,0.0
+queen mother,0.1
+sir,0.05
+astrology,0.1
+astronomy,0.1
+astrophysics,0.0
+biochemistry,0.1
+biomedical science,0.6
+geology,0.1
+neuroscience,0.1
+political science,0.2
+autumn,0.05
+dry,0.05
+monsoon,0.1
+spring,0.1
+summer,0.1
+winter,0.1
+adder,0.0
+anaconda,0.1
+boa constrictor,0.2
+cobra,0.3
+corn snake,0.1
+grass snake,0.1
+python,0.1
+rattlesnake,0.1
+sand snake,0.1
+sea snake,0.0
+viper,0.1
+water snake,0.2
+birthday,0.1
+birthday party,0.1
+christmas,0.2
+club,0.1
+dinner,0.1
+drinks,0.3
+event,0.1
+funeral,0.8
+meals,0.2
+meeting,0.1
+nightclub,0.2
+party,0.2
+pub,0.2
+soiree,0.1
+wedding,0.8
+acquaintance,0.1
+best friends,0.2
+boyfriend,0.0
+child,0.7
+colleague,0.2
+enemy,0.5
+family,0.9
+fiance,0.0
+friend,0.6
+girlfriend,0.2
+married,0.2
+parent,0.5
+peers,0.2
+relationship,0.5
+romantic,0.2
+student,0.1
+teammate,0.0
+cajun,0.0
+cardamom,0.05
+chilli,0.1
+chilli powder,0.1
+cumin,0.05
+five spice,0.1
+garam masala,0.05
+mixed spice,0.1
+nutmeg,0.05
+paprika,0.05
+turmeric,0.05
+american football,0.2
+athletics,0.2
+baseball,0.1
+basketball,0.1
+cheerleading,0.2
+croquet,0.05
+curling,0.05
+cycling,0.2
+darts,0.05
+diving,0.1
+dodgeball,0.2
+fencing,0.1
+football,0.2
+futsal,0.1
+golf,0.1
+handball,0.05
+hiking,0.1
+hockey,0.1
+horse riding,0.2
+ice hockey,0.1
+ice skating,0.1
+javelin,0.1
+judo,0.2
+karate,0.2
+netball,0.05
+polo,0.1
+rounders,0.1
+rugby,0.1
+rugby league,0.1
+running,0.1
+sailing,0.1
+skiing,0.1
+snooker,0.1
+snowboarding,0.1
+sprinting,0.1
+swimming,0.1
+volleyball,0.1
+water polo,0.1
+algebra,0.1
+anova,0.0
+average,0.2
+box plot,0.05
+chi-square,0.1
+correlation,0.1
+data,0.2
+graph,0.05
+median,0.1
+mode,0.1
+p-value,0.05
+percentages,0.1
+probability,0.1
+range,0.1
+significance,0.2
+significance level,0.05
+standard deviation,0.1
+standard error,0.0
+t-test,0.1
+variance,0.1
+z-score,0.1
+ants,0.1
+hornet,0.1
+horsefly,0.05
+scorpion,0.1
+banjo,0.05
+lute,0.1
+sitar,0.1
+ukulele,0.05
+alien,0.5
+angel,0.3
+demon,0.4
+devil,0.8
+fairy,0.1
+frankenstein,0.4
+ghost,0.2
+god,0.7
+monster,0.5
+poltergeist,0.1
+spirits,0.3
+superheroes,0.2
+vampire,0.6
+werewolf,0.0
+witches,0.3
+zombie,0.2
+aching,0.1
+blurred vision,0.05
+coughing,0.2
+cramps,0.0
+diarrhoea,0.1
+dizziness,0.1
+drowsiness,0.1
+feeling cold,0.1
+fever,0.1
+headache,0.1
+lethargy,0.2
+nausea,0.1
+pain,0.8
+rash,0.2
+redness,0.01
+runny nose,0.05
+shivering,0.1
+sick,0.0
+sneezing,0.05
+sore throat,0.1
+stomach ache,0.1
+sweating,0.1
+swelling,0.1
+temperature,0.1
+tiredness,0.1
+vomiting,0.1
+cycling relay,0.2
+doubles badminton,0.1
+doubles tennis,0.1
+korfball,0.1
+relay,0.1
+rowing,0.05
+cone,0.05
+cuboid,0.01
+cylinder,0.05
+prism,0.01
+pyramid,0.1
+sphere,0.05
+1pm,0.1
+2pm,0.1
+3pm,0.1
+4pm,0.1
+afternoon,0.05
+bedtime,0.1
+breakfast,0.1
+dawn,0.1
+daytime,0.1
+dusk,0.1
+evening,0.05
+lunchtime,0.1
+midday,0.05
+midnight,0.05
+morning,0.1
+night,0.1
+noon,0.05
+one o'clock,0.05
+small hours,0.1
+teatime,0.0
+three o'clock,0.01
+two o'clock,0.01
+axe,0.0
+bolts,0.05
+crowbar,0.1
+hacksaw,0.05
+level measures,0.1
+pen,0.05
+wrench,0.05
+apple tree,0.1
+ash,0.1
+birch,0.05
+cedar,0.1
+cherry,0.05
+christmas tree,0.1
+conifer,0.05
+elm,0.01
+evergreen,0.1
+fir,0.05
+horse chestnut,0.0
+maple,0.05
+oak,0.05
+palm tree,0.05
+pine,0.01
+silver birch,0.05
+spruce,0.05
+sycamore,0.05
+willow,0.05
+parallelogram,0.05
+septagon,0.05
+bicycle,0.1
+moped,0.1
+motorbike,0.1
+penny farthing,0.1
+scooter,0.1
+segway,0.1
+adjective,0.05
+adverb,0.05
+connecting word,0.1
+noun,0.1
+pronoun,0.6
+verb,0.1
+centimetre,0.05
+foot,0.05
+inches,0.01
+kilometre,0.01
+light year,0.05
+metre,0.05
+micrometre,0.01
+mile,0.1
+millimetre,0.01
+nanometre,0.01
+parsec,0.01
+yard,0.1
+century,0.1
+days,0.1
+decades,0.1
+epoch,0.1
+fortnight,0.05
+hours,0.0
+millennia,0.1
+milliseconds,0.01
+minutes,0.1
+months,0.1
+nanosecond,0.01
+seconds,0.05
+weeks,0.1
+years,0.1
+centilitre,0.01
+cups,0.05
+gram,0.1
+kilogram,0.01
+litre,0.05
+microgram,0.01
+milligram,0.05
+millilitre,0.01
+ounce,0.05
+pound,0.1
+ton,0.01
+asparagus,0.05
+aubergine,0.05
+bean sprouts,0.05
+beetroot,0.1
+butternut squash,0.05
+carrot,0.05
+cauliflower,0.05
+mushrooms,0.1
+onion,0.05
+parsnips,0.05
+potato,0.05
+pumpkin,0.05
+radish,0.05
+sprouts,0.1
+swede,0.1
+sweet potato,0.1
+sweetcorn,0.1
+turnip,0.05
+ambulance,0.1
+boat,0.1
+four-by-four,0.2
+heavy goods vehicle,0.1
+helicopter,0.05
+minibus,0.1
+police van,0.2
+skateboard,0.1
+taxi,0.1
+train,0.1
+wagon,0.05
+armed robbery,0.95
+battery,0.9
+bombing,0.85
+genocide,1.0
+kidnapping,1.0
+mugging,0.95
+shooting,0.8
+stabbing,0.95
+torture,0.95
+canada goose,0.0
+coot,0.0
+cormorant,0.05
+gull,0.0
+heron,0.05
+kingfisher,0.05
+pelican,0.05
+puffin,0.05
+canoeing,0.05
+jetskiing,0.1
+kayaking,0.05
+scuba diving,0.1
+surfing,0.1
+synchronised swimming,0.1
+wakeboarding,0.1
+waterskiing,0.05
+white-water rafting,0.1
+windsurfing,0.1
+air rifle,0.3
+arrow,0.05
+baseball bat,0.1
+bomb,0.8
+bow and arrow,0.2
+crossbow,0.2
+dagger,0.7
+fists,0.4
+gun,0.5
+machine gun,0.95
+rifle,0.5
+rock,0.05
+shield,0.1
+shotgun,0.6
+spear,0.2
+sword,0.2
+taser,0.6
+words,0.1
+breezy,0.05
+bright,0.1
+cloudy,0.05
+drizzle,0.05
+fog,0.01
+frosty,0.05
+hail,0.1
+hot,0.1
+humid,0.05
+hurricane,0.2
+icy,0.05
+lightning,0.05
+overcast,0.05
+rainy,0.05
+sleet,0.05
+snow,0.1
+snowstorm,0.1
+still,0.0
+stormy,0.1
+sunny,0.1
+temperate,0.1
+thunder,0.05
+thunderstorm,0.05
+wet,0.05
+windy,0.05
+piccolo,0.05
+windpipe,0.05
+bobsleigh,0.05
+cross-country skiing,0.1
+figure skating,0.1
+luge,0.05
+ski jump,0.1
+ski slalom,0.1
+sledging,0.1
+speed skating,0.1
+tobogganing,0.1
