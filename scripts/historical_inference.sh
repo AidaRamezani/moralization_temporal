@@ -12,7 +12,7 @@ source ~/venv2/bin/activate
 
 for p in "previous_link" "polarity"
 do 
-    for i in {0..20}
+    for i in {0..20} #Modify the number of sections based on your custom dataset, you may have more than 21 time points.
     do
         for j in {0..4}
         do

@@ -1,5 +1,6 @@
 model_name: 'bert-base-uncased'
 model_saving_dir: './data/SWOW_prediction/models/'
+store_dir: './data/SWOW_prediction/'
 data_name: 'coha'
 data_path:
   'coha':

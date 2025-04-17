@@ -277,7 +277,8 @@ def evaluate(config_file, section = 'dev'):
                                                                     property,
                                                                     two_gram,
                                                                     k = k, walking_type = walking_type,
-                                                                    data_features = data_features)
+                                                                    data_features = data_features,
+                                                                    store_dir = config_file['store_dir'])
     swow_data_sets = swow_data_sets[train_section]
     
     n = len(vocab_mapping)
