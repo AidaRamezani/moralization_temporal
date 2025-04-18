@@ -1,7 +1,7 @@
 import pandas as pd
 import torch
 import numpy as np
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import Dataset
 from torch_geometric.utils import add_self_loops, negative_sampling, remove_self_loops
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import sent_tokenize
@@ -10,13 +10,13 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pickle
 import os
 import networkx as nx
-from typing import List, Dict, Tuple, Optional, Union
-import time
-from functools import wraps
+from typing import List, Dict, Tuple, Optional, Union, Any
 
 
 from SWOW_prediction.custom_tokenizers import MyTokenizer
-from SWOW_prediction.utils import get_data, get_swow_data, get_tokenizer
+from SWOW_prediction.utils import *
+from SWOW_prediction.data_preprocessing_utils import get_swow_data, get_data, get_two_grams, get_sentence_encodings,get_word_position,\
+                                                    get_word_embedding
 
 
 
@@ -201,7 +201,7 @@ def get_word_count(
         if swow_cues:
             cues.extend([w for w in swow_cues if w not in cues])
     else:
-        # Implement other strategies here, I have not tested anything other than frequency
+        # Implement other strategies here, but I have not tested anything other than frequency
         cues = []
         
     return word_count, cues
@@ -401,6 +401,8 @@ def get_two_grams_from_swow(version: int, lemmatizer: WordNetLemmatizer) -> List
         List of two-grams
     """
     df = get_swow_data(version)
+    if len(df) == 0:
+        return []
     df['response'] = [lemmatizer.lemmatize(str(r)) for r in df.response]
     df['cue'] = [lemmatizer.lemmatize(str(c)) for c in df.cue]
     two_grams = [w for w in df['cue'] if len(str(w).split()) == 2]
@@ -419,6 +421,8 @@ def get_swow_words(version: int, lemmatizer: WordNetLemmatizer) -> List[str]:
         List of words
     """
     df = get_swow_data(version)
+    if len(df) == 0:
+        return []
     df['cue'] = [lemmatizer.lemmatize(str(c).lower()) for c in df.cue]
     words = list(df.cue.unique())
     
@@ -427,15 +431,9 @@ def get_swow_words(version: int, lemmatizer: WordNetLemmatizer) -> List[str]:
 
 @time_function
 def get_sentiments(
-    tokenized_data: List[List[str]], 
-    token_list: List[List[str]], 
-    lemmatized_tokens: List[List[str]], 
+    tokenized_data: List[List[str]],
     sentences: List[str],
-    cues: List[str],
-    two_grams: List[str], 
-    tokenizer: Any,
-    model_name: str,
-    max_length: int = 200
+    cues: List[str]
 ) -> Dict[str, float]:
     """
     Calculate sentiment scores for cues.
@@ -473,7 +471,6 @@ def get_sentiments(
 
 
 def store_sentiments(
-    model_name: str, 
     year: int = 2000,
     data_name: str = 'coha',
     **kwargs
@@ -525,10 +522,7 @@ def store_sentiments(
     print(f'Got all cues: {len(cues)}')
     
     
-    sentiments = get_sentiments(
-        tokenized_data, token_list, lemmatized_tokens, sentences,
-        cues, two_grams, tokenizer, model_name, max_length=200
-    )
+    sentiments = get_sentiments(tokenized_data, sentences, cues)
     
     return sentiments
 
@@ -540,7 +534,7 @@ def get_encodings(
     sentences: List[str],
     cues: List[str],
     two_grams: List[str], 
-    tokenizer: Any,
+    tokenizer, 
     model_name: str,
     max_length: int = 200
 ) -> Tuple[List[List[Any]], List[Any]]:
@@ -562,7 +556,7 @@ def get_encodings(
         sentence_positions: List of positions for cues in sentences
         all_encodings: List of encoded sentences
     """
-    from SWOW_prediction.data_preprocessing_utils import get_sentence_encodings, get_word_position
+    
     
     special_token = tokenizer.special_tokens_map['sep_token']
     special_token_id = tokenizer.encode(special_token, add_special_tokens=False)[0]
@@ -698,7 +692,7 @@ def store_embedding_data(model_name, year=2000, max_length=200, data_name='coha'
     Returns:
         tuple: (word_embeddings, word_counts, normalized_embeddings)
     """
-    from SWOW_prediction.data_preprocessing_utils import get_word_embedding
+    
     
     
     data_path = kwargs['data_path']
@@ -806,8 +800,8 @@ def store_textual_data(
     add_self_loops = kwargs.get('add_self_loops', True)
     node_neighbors = kwargs.get('node_neighbors', 25)
     
-    years = year_range.get(data_name, [])
-    i = years.index(year) if year in years else 0
+    # years = year_range.get(data_name, [])
+    # i = years.index(year) if year in years else 0
     
     
     lemmatizer = WordNetLemmatizer()
@@ -876,7 +870,6 @@ def store_textual_data(
         'edge_index': edge_index,
         'edge_weight': edge_weight,
         'cues': cues,
-        'index': i
     }
 
     
@@ -937,7 +930,7 @@ def get_textual_data_input_with_sections(
     storing_dir = kwargs.get('storing_dir', './data/SWOW_prediction')
     
     for i, year in enumerate(years):
-        store_dir = os.path.join(storing_dir, f'data_{data_name}_{i}_{model_name}.pkl')
+        store_dir = os.path.join(storing_dir, f'data_{data_name}_{year}_{model_name}.pkl')
         
         if not os.path.exists(store_dir):
             print(f"Warning: {store_dir} does not exist. Run data preprocessing first.")
@@ -1163,6 +1156,7 @@ if __name__ == '__main__':
     parser.add_argument('--store_dir', type=str, default='./data/SWOW_prediction', 
                         help="Directory to store results")
     
+    
     args = parser.parse_args()
     
     # Check if data path exists
@@ -1254,15 +1248,14 @@ if __name__ == '__main__':
             two_gram=True
         )
         
-        i = textual_data['index']
-        output_path = os.path.join(args.store_dir, f'data_{args.data}_{i}_{args.model}.pkl')
+        # i = year_range[args.data].index(args.year) if args.year in year_range[args.data] else 0
+        output_path = os.path.join(args.store_dir, f'data_{args.data}_{args.year}_{args.model}.pkl')
         with open(output_path, 'wb') as f:
             pickle.dump(textual_data, f)
         print(f"Saved graph data to {output_path}")
         
     elif args.function == 'sentiment':
         sentiments = store_sentiments(
-            args.model,
             year=args.year,
             data_name=args.data,
             data_path=args.data_path,
@@ -1281,131 +1274,3 @@ if __name__ == '__main__':
         with open(output_path, 'wb') as f:
             pickle.dump(sentiments, f)
         print(f"Saved sentiment data to {output_path}")
-
-if __name__ == '__main__': 
-    
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--year', type=int, default=2000)
-    parser.add_argument('--model', type=str,default='bert-based-uncased')
-    parser.add_argument('--data', type=str,default='coha')
-    parser.add_argument('--function', type=str,default='encoding')
-    parser.add_argument('--length', type=int,default=200)
-    parser.add_argument('--node_neighbors', type=int,default=100)
-    parser.add_argument('--data_path', type=str,default='./data/COHA.zip')
-    parser.add_argument('--store_dir', type=str,default='./data/SWOW_prediction')
-    args = parser.parse_args()
-    model_name = args.model
-    data_name = args.data
-    max_length = args.length
-    data_function = args.function
-    node_neighbors = args.node_neighbors
-    data_path = args.data_path
-    if not os.path.exists(data_path):
-        raise argparse.ArgumentTypeError(f"data path:{data_path} is not a valid path")
-    
-    os.makedirs(args.store_dir, exist_ok = True)
-
-    if torch.cuda.is_available():
-        device_name = 'cuda'
-    else:
-        device_name = 'cpu'
-    year_range = { #change here if using your own data
-        'coha': list(np.arange(2000, 1840, -10)),
-        'nyt':  list(np.arange(2007, 1986, -1))
-        
-    }
-    years = year_range[data_name]
-    
-    
-    data_features = {data_name:{'year':[args.year]}}
-
-    #keeping hyperparameters fixed throughout
-
-    token_strategy = 'frequency'
-    graph_strategy = 'ppmi'
-    graph_version = 2
-    swow_version = 1
-    fill = 'add'
-    
-   
-
-    if data_function == 'encoding':
-
-        sentence_positions,all_encodings = store_encoding_data(model_name,
-                                    year = args.year,
-                            max_length = max_length,
-                            data_name = data_name,
-                            data_path = data_path,
-                            token_strategy = token_strategy,
-                            graph_strategy = graph_strategy,
-                            device_name = device_name,
-                            graph_version = graph_version,
-                            fill = fill,
-                            add_self_loops = True,
-                            node_neighbors = node_neighbors,
-                            swow_version = swow_version,
-                            two_gram = True
-                            )
-
-        pickle.dump((sentence_positions, all_encodings),
-                open(os.path.join(args.store_dir, f'{data_name}_{args.year}_encodings_{model_name}.pkl'),'wb'))
-        
-     
-    elif data_function == 'embedding':
-        
-        final_cue_embeddings, final_word_counts, embedding_data = \
-                           store_embedding_data(model_name,
-                                                        year = args.year,
-                                                        max_length = max_length,
-                                                        data_name = data_name,
-                                                        data_path = data_path,
-                                                        token_strategy = token_strategy,
-                                                        graph_strategy = graph_strategy,
-                                                        device_name = device_name,
-                                                        graph_version = graph_version,
-                                                        fill = fill,
-                                                        add_self_loops = True,
-                                                        node_neighbors = node_neighbors,
-                                                        swow_version = swow_version,
-                                                        two_gram = True,
-                            )
-        pickle.dump((final_cue_embeddings, final_word_counts, embedding_data), 
-        open(os.path.join(args.store_dir, f'{args.year}_{data_name}_emb_{model_name}.pkl'),'wb'))
-    
-    elif data_function == 'graph':    
-        textual_data = store_textual_data(model_name,
-                                    year = args.year,
-                            max_length = max_length,
-                            data_name = data_name,
-                            data_path = data_path,
-                            token_strategy = token_strategy,
-                            graph_strategy = graph_strategy,
-                            device_name = device_name,
-                            graph_version = graph_version,
-                            fill = fill,
-                            add_self_loops = True,
-                            node_neighbors = node_neighbors,
-                            swow_version = swow_version,
-                            two_gram = True,
-                            )
-        i = textual_data['index']
-        pickle.dump(textual_data, open(os.path.join(args.store_dir, f'data_{data_name}_{i}_{model_name}.pkl'),'wb'))
-        elif data_function == 'sentiment':
-            sentiments = store_sentiments(model_name, year = args.year,
-            data_name = data_name,
-            data_path = data_path,
-                                token_strategy = token_strategy,
-                                graph_strategy = graph_strategy,
-                                device_name = device_name,
-                                graph_version = graph_version,
-                                fill = fill,
-                                add_self_loops = True,
-                                node_neighbors = node_neighbors,
-                                swow_version = swow_version,
-                                two_gram = True,
-                                )
-            pickle.dump(sentiments, open(os.path.join(args.store_dir, f'sentiments_{data_name}_{args.year}_{model_name}.pkl'),'wb'))
-
-
-

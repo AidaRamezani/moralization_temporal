@@ -10,7 +10,6 @@ from typing import List, Tuple, Dict, Any, Optional
 from torch.utils.data import Dataset, DataLoader
 
 
-
 def get_swow_data(version: int = 1) -> pd.DataFrame:
     """
     Load SWOW (Small World of Words) data from CSV file.
@@ -21,6 +20,8 @@ def get_swow_data(version: int = 1) -> pd.DataFrame:
     Returns:
         DataFrame containing cue-response associations with mean total counts
     """
+    if not os.path.exists('data/SWOWEN/responses_R1.csv'):
+        return pd.DataFrame()
     df = pd.read_csv(f'data/SWOWEN/responses_R{version}.csv')
     return df.groupby(['cue', 'response'])['total'].mean().reset_index()
 
@@ -117,7 +118,7 @@ def get_data(data_name: str, data_path: str, **kwargs) -> List[str]:
     
     if data_name == 'coha':
         return get_coha_data(year)
-    elif data_name == 'nyt'
+    elif data_name == 'nyt':
         return get_nyt_data(year, data_path)
     else:
         raise ValueError(f"Unsupported data name: {data_name}, please add your own data processing function here")
@@ -381,49 +382,6 @@ class CueDataset(Dataset):
         return torch.tensor(ids, dtype=torch.long), torch.tensor(mask, dtype=torch.long), positions
 
 
-def get_sentence_embedding_for_test(
-    sentences: List[str], 
-    model_name: str, 
-    max_length: int
-) -> List[np.ndarray]:
-    """
-    Get sentence embeddings for test sentences.
-    
-    Args:
-        sentences: List of sentences to encode
-        model_name: Name of the model to use
-        max_length: Maximum sequence length
-        
-    Returns:
-        List of sentence embeddings
-    """
-    
-    tokenizer = get_tokenizer(model_name)
-    encodings = [get_sentence_encodings(tokenizer, sentence, max_length=max_length) 
-                 for sentence in sentences]
-    
-    
-    special_token = tokenizer.special_tokens_map['sep_token']
-    special_token_id = tokenizer.encode(special_token, add_special_tokens=False)[0]
-    
-   
-    masks = torch.tensor([encoding['attention_mask'] for encoding in encodings], dtype=torch.long)
-    ids = torch.tensor([encoding['input_ids'] for encoding in encodings], dtype=torch.long)
-    positions = [list(id).index(special_token_id) for id in ids]
-    
-    
-    model = get_model(model_name)
-    outputs = model(ids, masks)[0]
-    outputs = outputs.detach().cpu().numpy()
-    
-    
-    sentence_embeddings = [np.mean(outputs[i, 1:positions[i]], axis=0) for i in range(len(positions))]
-    
-    
-    del model
-    gc.collect()
-    
-    return sentence_embeddings
 
 
 def get_word_embedding(

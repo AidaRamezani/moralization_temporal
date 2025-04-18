@@ -17,7 +17,7 @@ if __name__ == '__main__':
     #please download data from https://data.stanford.edu/congress_text and place in the folder ./data/hein-daily
     #Reference: https://data.stanford.edu/congress_text 
     #Reference https://stacks.stanford.edu/file/druid:md374tz9962/codebook_v4.pdf
-    #parse arguments
+    
     parser = argparse.ArgumentParser()
     parser.add_argument('--congress_id', type = int, default = 97)
     args = parser.parse_args()

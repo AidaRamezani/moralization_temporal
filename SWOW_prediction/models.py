@@ -1,443 +1,261 @@
-import torch.nn as nn
 import torch
+import torch.nn as nn
+from torch import Tensor
+from typing import Optional, List, Literal
+
 from torch_geometric.nn.models import GAT, GCN
-from torch_geometric.nn import Sequential
 from torch_geometric.nn.norm.layer_norm import LayerNorm
 from torch_geometric.nn.models.basic_gnn import BasicGNN
-from typing import Optional, List
-from torch import Tensor
-  
 
-class BasicLinkPredictor(nn.Module):
-  def select_model(self, encoder_model_name,
-                    in_channels,
-                    hidden_channels,
-                    num_layers,
-                    num_heads,
-                    out_channels: Optional[int] = None,
-                    dropout: float = 0.0) -> BasicGNN:
-        assert encoder_model_name in ['GAT','GAT2','GCN'] 
-        if encoder_model_name == 'GAT': #other architectures to try
-            gnn = GAT(in_channels= in_channels, hidden_channels=hidden_channels, num_layers=num_layers,
-                      out_channels=out_channels, dropout=dropout, v2 = False, heads = num_heads,add_self_loops = False)
-        elif encoder_model_name == 'GAT2': #other architectures to try
-            gnn = GAT(in_channels= in_channels, hidden_channels=hidden_channels, num_layers=num_layers,
-          out_channels=out_channels, dropout=dropout, v2 = True, heads = num_heads)
-        elif encoder_model_name == 'GCN': 
-            gnn = GCN(in_channels= in_channels, hidden_channels=hidden_channels, num_layers=num_layers,
-                      out_channels=out_channels, dropout=dropout, heads = num_heads, add_self_loops = False,
-                      jk = 'max', act = 'tanh'
-                      )
-        return gnn
+
+class GNNModelSelector:
+    """Helper class to select and configure GNN models."""
+    
+    @staticmethod
+    def get_model(
+        model_name: Literal['GAT', 'GAT2', 'GCN'],
+        in_channels: int,
+        hidden_channels: int,
+        num_layers: int,
+        num_heads: int,
+        out_channels: Optional[int] = None,
+        dropout: float = 0.0
+    ) -> BasicGNN:
+        """
+        Factory method to create a GNN model based on specified parameters.
+        
+        Args:
+            model_name: The type of GNN model to create
+            in_channels: Number of input features
+            hidden_channels: Number of hidden features
+            num_layers: Number of layers in the GNN
+            num_heads: Number of attention heads (for GAT)
+            out_channels: Number of output features
+            dropout: Dropout probability
+            
+        Returns:
+            Configured GNN model instance
+        """
+        if model_name == 'GAT':
+            return GAT(
+                in_channels=in_channels,
+                hidden_channels=hidden_channels,
+                num_layers=num_layers,
+                out_channels=out_channels,
+                dropout=dropout,
+                v2=False,
+                heads=num_heads,
+                add_self_loops=False
+            )
+        elif model_name == 'GAT2':
+            return GAT(
+                in_channels=in_channels,
+                hidden_channels=hidden_channels,
+                num_layers=num_layers,
+                out_channels=out_channels,
+                dropout=dropout,
+                v2=True,
+                heads=num_heads
+            )
+        elif model_name == 'GCN':
+            return GCN(
+                in_channels=in_channels,
+                hidden_channels=hidden_channels,
+                num_layers=num_layers,
+                out_channels=out_channels,
+                dropout=dropout,
+                heads=num_heads,
+                add_self_loops=False,
+                jk='max',
+                act='tanh'
+            )
+        else:
+            raise ValueError(f"Unsupported model: {model_name}. Choose from 'GAT', 'GAT2', or 'GCN'")
 
 
 class BasicPropertyPredictor(nn.Module):
-    def __init__(self,
-                 in_channels,
-                 dropout: float = 0.0):
-        super(BasicPropertyPredictor, self).__init__()
+    """Basic module for predicting node properties."""
+    
+    def __init__(
+        self,
+        in_channels: int,
+        dropout: float = 0.0
+    ):
+        """
+        Initialize the property predictor.
         
-        self.linear2 = nn.Linear(in_channels, in_channels, bias = True)
-        self.linear = nn.Linear(in_channels, 1, bias = False)
+        Args:
+            in_channels: Number of input features
+            dropout: Dropout probability
+        """
+        super().__init__()
+        
+        self.linear1 = nn.Linear(in_channels, in_channels, bias=True)
+        self.linear2 = nn.Linear(in_channels, 1, bias=False)
         self.dropout = nn.Dropout(p=dropout)
-        self.relu = nn.ReLU(inplace = False)
-        self.tanh = nn.Tanh()
-        self.sigmoid = nn.Sigmoid()
-        self.add_linear = False
+        self.relu = nn.ReLU()
     
-    def forward(self, x: Tensor):
-        node_feature = self.dropout(x)
-        node_feature = self.linear2(node_feature)
-        node_feature = self.relu(node_feature)
-        node_feature = self.linear(node_feature)
-        parameter = node_feature
-        parameter = parameter.squeeze(1)
-        return parameter
-    
+    def forward(self, x: Tensor) -> Tensor:
+        """
+        Forward pass for node property prediction.
+        
+        Args:
+            x: Node features tensor
+            
+        Returns:
+            Predicted property values
+        """
+        x = self.dropout(x)
+        x = self.linear1(x)
+        x = self.relu(x)
+        x = self.linear2(x)
+        return x.squeeze(1)
 
 
-class ParameterPropertyPredictor(BasicLinkPredictor):
-    def __init__(self, n,
-                 in_channels,
-                 hidden_channels,
-                 out_channels: Optional[int] = None,
-                 num_layers = 2,
-                 num_heads = 5,
-                 dropout: float = 0.0,
-                 encoder_model_name = 'GCN',
-                 reduce = 'mean',
-                 add_linear = False):
-        super(ParameterPropertyPredictor, self).__init__()
-        assert reduce in ['mean','sum','add','mult', 'concat','forward','both'], 'reduce must be one of mean, sum, add, mult, concat,foward, linking, both'
-        self.n = n
-        self.encoder_model = self.select_model(encoder_model_name,
-                                             in_channels,
-                                             hidden_channels,
-                                             num_layers,
-                                             num_heads,
-                                             out_channels,
-                                             dropout)
-        self.decoder_model = self.select_model(encoder_model_name,
-                                              in_channels,
-                                              hidden_channels,
-                                              num_layers,
-                                              num_heads,
-                                              out_channels,
-                                              dropout)
+class ParameterPropertyPredictor(nn.Module):
+    """
+    Advanced property predictor that uses both forward and backward embeddings.
+    """
+    
+    VALID_REDUCTION_METHODS = {'mean', 'sum', 'add', 'mult', 'concat', 'forward', 'backward', 'both', 'linking'}
+    
+    def __init__(
+        self,
+        num_nodes: int,
+        in_channels: int,
+        hidden_channels: int,
+        out_channels: Optional[int] = None,
+        num_layers: int = 2,
+        num_heads: int = 5,
+        dropout: float = 0.0,
+        encoder_model_name: Literal['GAT', 'GAT2', 'GCN'] = 'GCN',
+        reduce: str = 'mean',
+        use_linear_transform: bool = False
+    ):
+        """
+        Initialize the parameter property predictor.
+        
+        Args:
+            num_nodes: Number of nodes in the graph
+            in_channels: Number of input features
+            hidden_channels: Number of hidden features
+            out_channels: Number of output features (defaults to hidden_channels if None)
+            num_layers: Number of layers in the GNN
+            num_heads: Number of attention heads (for GAT)
+            dropout: Dropout probability
+            encoder_model_name: Type of GNN model to use
+            reduce: Method to combine forward and backward embeddings
+            use_linear_transform: Whether to use additional linear transformations
+        """
+        super().__init__()
+        
+        if reduce not in self.VALID_REDUCTION_METHODS:
+            raise ValueError(f"Invalid reduction method: {reduce}. Choose from {self.VALID_REDUCTION_METHODS}")
+        
+        self.num_nodes = num_nodes
         self.reduce = reduce
-        self.encoder_norm = LayerNorm(out_channels, mode = 'node')
-        self.decoder_norm = LayerNorm(out_channels, mode = 'node')
+        self.use_linear_transform = use_linear_transform
         
-        linear_dim = out_channels
-        self.linear = nn.Linear(linear_dim, 1, bias = False)
+        if out_channels is None:
+            out_channels = hidden_channels
+            
+        
+        self.encoder_model = GNNModelSelector.get_model(
+            encoder_model_name, in_channels, hidden_channels, num_layers, num_heads, out_channels, dropout
+        )
+        self.decoder_model = GNNModelSelector.get_model(
+            encoder_model_name, in_channels, hidden_channels, num_layers, num_heads, out_channels, dropout
+        )
+        
+       
+        self.encoder_norm = LayerNorm(out_channels, mode='node')
+        self.decoder_norm = LayerNorm(out_channels, mode='node')
+        
+        
+        linear_dim = out_channels * 2 if reduce == 'concat' else out_channels
+        self.final_linear = nn.Linear(linear_dim, 1, bias=False)
         self.dropout = nn.Dropout(p=dropout)
-        self.relu = nn.ReLU(inplace = False)
-        self.emb_linar = nn.Linear(in_channels, out_channels, bias = False)
-        self.tanh = nn.Tanh()
-        self.sigmoid = nn.Sigmoid()
+        self.relu = nn.ReLU()
+        self.emb_linear = nn.Linear(in_channels, out_channels, bias=False)
         self.batch_norm = nn.BatchNorm1d(out_channels)
-        self.add_linear = False
-        if add_linear:
-            self.add_linear = True
-            self.forward_linear = nn.Linear(out_channels, out_channels, bias = False)
-            self.backward_linear = nn.Linear(out_channels, out_channels, bias = False)
-
-    
-    def forward(self, x: Tensor,
-                edge_index: Tensor,
-                edge_weight: Optional[Tensor] = None,
-                edge_attr: Optional[Tensor] = None,
-                num_sampled_nodes_per_hop: Optional[List[int]] = None,
-                num_sampled_edges_per_hop: Optional[List[int]] = None):
-
-        assert x.shape[0] == self.n
         
-        forward_embeddings = self.encoder_model.forward(x, edge_index,
-                                              edge_weight = edge_weight,
-                                              edge_attr = edge_attr,
-                                              num_sampled_nodes_per_hop = num_sampled_nodes_per_hop,
-                                              num_sampled_edges_per_hop = num_sampled_edges_per_hop)
+        
+        if use_linear_transform:
+            self.forward_linear = nn.Linear(out_channels, out_channels, bias=False)
+            self.backward_linear = nn.Linear(out_channels, out_channels, bias=False)
+
+    def forward(
+        self,
+        x: Tensor,
+        edge_index: Tensor,
+        edge_weight: Optional[Tensor] = None,
+        edge_attr: Optional[Tensor] = None,
+        num_sampled_nodes_per_hop: Optional[List[int]] = None,
+        num_sampled_edges_per_hop: Optional[List[int]] = None
+    ) -> Tensor:
+        """
+        Forward pass combining both encoder and decoder outputs.
+        
+        Args:
+            x: Node features tensor
+            edge_index: Graph connectivity
+            edge_weight: Edge weights
+            edge_attr: Edge attributes
+            num_sampled_nodes_per_hop: Number of sampled nodes per hop
+            num_sampled_edges_per_hop: Number of sampled edges per hop
+            
+        Returns:
+            Predicted parameter values
+        """
+        
+        if x.shape[0] != self.num_nodes:
+            raise ValueError(f"Expected {self.num_nodes} nodes, got {x.shape[0]}")
+        
+        
+        model_kwargs = {
+            'edge_weight': edge_weight,
+            'edge_attr': edge_attr,
+            'num_sampled_nodes_per_hop': num_sampled_nodes_per_hop,
+            'num_sampled_edges_per_hop': num_sampled_edges_per_hop
+        }
+        
        
-        forward_embeddings = self.encoder_norm(forward_embeddings)
-
-        backward_embeddings = self.decoder_model.forward(x, edge_index,
-                                                              edge_weight = edge_weight,
-                                                              edge_attr = edge_attr,
-                                                              num_sampled_nodes_per_hop = num_sampled_nodes_per_hop,
-                                                              num_sampled_edges_per_hop = num_sampled_edges_per_hop)
-        backward_embeddings = self.decoder_norm(backward_embeddings)
-        if self.add_linear:
-            forward_embeddings = self.forward_linear(forward_embeddings)
-            backward_embeddings = self.backward_linear(backward_embeddings)
+        forward_emb = self.encoder_model(x, edge_index, **model_kwargs)
+        forward_emb = self.encoder_norm(forward_emb)
         
-        if self.reduce == 'mean':  #other architectues to try
-            node_embeddings = (forward_embeddings + backward_embeddings) / 2
-        elif self.reduce in ['sum', 'add']:
-            node_embeddings = forward_embeddings + backward_embeddings
+        
+        backward_emb = self.decoder_model(x, edge_index, **model_kwargs) 
+        backward_emb = self.decoder_norm(backward_emb)
+        
+        
+        if self.use_linear_transform:
+            forward_emb = self.forward_linear(forward_emb)
+            backward_emb = self.backward_linear(backward_emb)
+        
+        # Combine embeddings based on reduction method
+        if self.reduce == 'mean':
+            node_emb = (forward_emb + backward_emb) / 2
+        elif self.reduce in ('sum', 'add'):
+            node_emb = forward_emb + backward_emb
         elif self.reduce == 'mult':
-            node_embeddings = forward_embeddings * backward_embeddings
+            node_emb = forward_emb * backward_emb
         elif self.reduce == 'concat':
-            node_embeddings = torch.cat((forward_embeddings, backward_embeddings), dim = 1)
-        elif self.reduce == 'linking': 
-            similarities = torch.matmul(forward_embeddings, backward_embeddings.T) 
-            node_embeddings = torch.matmul(similarities, forward_embeddings) 
-        elif self.reduce == 'forward': #GCN
-            node_embeddings = forward_embeddings
+            node_emb = torch.cat((forward_emb, backward_emb), dim=1)
+        elif self.reduce == 'linking':
+            similarities = torch.matmul(forward_emb, backward_emb.T)
+            node_emb = torch.matmul(similarities, forward_emb)
+        elif self.reduce == 'forward':
+            node_emb = forward_emb
+        elif self.reduce == 'backward':
+            node_emb = backward_emb
+        elif self.reduce == 'both':
+            # Residual connection
+            x_transformed = self.relu(self.emb_linear(self.dropout(x)))
+            node_emb = x_transformed + forward_emb
+        
+        # Final processing and prediction
+        if self.reduce != 'concat':  # Skip batch norm for concat to handle different dimensions
+            node_emb = self.batch_norm(node_emb)
             
-        elif self.reduce == 'both': #Residual GCN
-            emb_1 = self.dropout(x)
-            node_feature_1 = self.emb_linar(emb_1)
-            node_feature_1 = self.relu(node_feature_1)
-            node_feature_2 = forward_embeddings
-            node_embeddings = node_feature_1 + node_feature_2
-            
-        node_embeddings = self.batch_norm(node_embeddings)
-        node_feature = self.linear(node_embeddings)
-        parameter = node_feature
-        parameter = parameter.squeeze(1)
-        return parameter
-    
-
-
-
-
-
-# class PropertyPredictor(BasicLinkPredictor):
-#     def __init__(self, n,
-#                  in_channels,
-#                  hidden_channels,
-#                  out_channels: Optional[int] = None,
-#                  num_layers = 2,
-#                  num_heads = 5,
-#                  dropout: float = 0.0,
-#                  encoder_model_name = 'GAT',
-#                  reduce = 'mean',
-#                  add_linear = False):
-#         super(PropertyPredictor, self).__init__()
-#         assert reduce in ['mean','sum','add','mult','forward','both'], 'reduce must be one of mean, sum, add, mult,foward, both, it is {}'.format(reduce)
-#         self.n = n
-#         self.dropout = nn.Dropout(p=dropout)
-#         self.encoder_model = self.select_model(encoder_model_name,
-#                                              in_channels,
-#                                              hidden_channels,
-#                                              num_layers,
-#                                              num_heads,
-#                                              out_channels,
-#                                              dropout)
-#         self.decoder_model = self.select_model(encoder_model_name,
-#                                               in_channels,
-#                                               hidden_channels,
-#                                               num_layers,
-#                                               num_heads,
-#                                               out_channels,
-#                                               dropout)
-#         self.reduce = reduce
-#         self.encoder_norm = LayerNorm(out_channels, mode = 'node')
-#         self.decoder_norm = LayerNorm(out_channels, mode = 'node')
-#         linear_dim = out_channels 
-#         self.linear = nn.Linear(linear_dim, 2, bias = False)
-#         self.emb_linar = nn.Linear(in_channels, out_channels, bias = False)
-#         self.relu = nn.ReLU(inplace = False)
-#         self.tanh = nn.Tanh()
-#         self.sigmoid = nn.Sigmoid()
-#         self.add_linear = False
-#         if add_linear:
-#             self.add_linear = True
-#             self.forward_linear = nn.Linear(out_channels, out_channels, bias = False)
-#             self.backward_linear = nn.Linear(out_channels, out_channels, bias = False)
-
-    
-#     def forward(self, x: Tensor,
-#                 edge_index: Tensor,
-#                 edge_weight: Optional[Tensor] = None,
-#                 edge_attr: Optional[Tensor] = None,
-#                 num_sampled_nodes_per_hop: Optional[List[int]] = None,
-#                 num_sampled_edges_per_hop: Optional[List[int]] = None):
-
-#         assert x.shape[0] == self.n
-        
-#         forward_embeddings = self.encoder_model.forward(x, edge_index,
-#                                               edge_weight = edge_weight,
-#                                               edge_attr = edge_attr,
-#                                               num_sampled_nodes_per_hop = num_sampled_nodes_per_hop,
-#                                               num_sampled_edges_per_hop = num_sampled_edges_per_hop)
-        
-#         forward_embeddings = self.encoder_norm(forward_embeddings)
-
-#         backward_embeddings = self.decoder_model.forward(x, edge_index,
-#                                                               edge_weight = edge_weight,
-#                                                               edge_attr = edge_attr,
-#                                                               num_sampled_nodes_per_hop = num_sampled_nodes_per_hop,
-#                                                               num_sampled_edges_per_hop = num_sampled_edges_per_hop)
-#         backward_embeddings = self.decoder_norm(backward_embeddings)
-#         if self.add_linear:
-#             forward_embeddings = self.forward_linear(forward_embeddings)
-#             backward_embeddings = self.backward_linear(backward_embeddings)
-        
-#         if self.reduce == 'mean':
-#             node_embeddings = (forward_embeddings + backward_embeddings) / 2
-#         elif self.reduce in ['sum', 'add']:
-#             node_embeddings = forward_embeddings + backward_embeddings
-#         elif self.reduce == 'mult':
-#             node_embeddings = forward_embeddings * backward_embeddings
-#         elif self.reduce == 'linking':
-#             similarities = torch.matmul(forward_embeddings, backward_embeddings.T) #shape = (n, n)
-#             node_embeddings = torch.matmul(similarities, forward_embeddings) #Should I use forward or backward?
-#         elif self.reduce == 'forward':
-#             node_embeddings = forward_embeddings
-#         elif self.reduce == 'both':
-#             emb_1 = self.dropout(x)
-#             node_feature_1 = self.emb_linar(emb_1)
-#             node_feature_1 = self.relu(node_feature_1)
-#             node_feature_2 = forward_embeddings
-#             node_embeddings = node_feature_1 + node_feature_2
-
-#         node_feature = self.linear(node_embeddings)
-        
-#         assert node_feature.shape == (self.n, 2)
-#         # node_feature = node_feature.squeeze(1)
-#         return node_feature
-    
-
-
-# class BasicEncoderLinkPredictor(BasicLinkPredictor): #Simple encoder model
-#     def __init__(self,
-#                  in_channels,
-#                  hidden_channels,
-#                  dropout: float = 0.0):
-#         super(BasicEncoderLinkPredictor, self).__init__()
-       
-#         self.linear1 = nn.Linear(in_channels, hidden_channels, bias = True)
-#         self.relu = nn.ReLU(inplace = False)
-#         self.leakyrelu = nn.LeakyReLU(inplace = False)
-#         self.linear2 = nn.Linear(in_channels, hidden_channels, bias = True)
-#         self.norm = nn.LayerNorm(in_channels)
-#         self.sigmoid = nn.Sigmoid()
-#         self.softmax = nn.Softmax(dim = 1)
-#         self.dropout = nn.Dropout(p=dropout)
-        
-    
-#     def forward(self, emb:Tensor, all_emb:Tensor):
-#         '''
-#         emb: Tensor of shape (batch_size, in_channels)
-#         all_emb: Tensor of shape (n, in_channels)
-#         '''
-        
-#         assert emb.shape[1] == all_emb.shape[1]
-        
-#         emb = self.dropout(emb)
-#         emb = self.linear1(emb)
-#         all_embs = self.linear2(all_emb)
-#         emb = self.leakyrelu(emb)
-#         all_embs = self.leakyrelu(all_embs)
-#         # emb = self.leakyrelu(emb)
-#         # emb = self.linear2(emb) #shape = (batch_size, in_channels)
-#         # emb = self.norm(emb)
-#         similarities = torch.matmul(emb, all_embs.T) #shape = (batch_size, n)
-#         # similarities = self.softmax(similarities) #shape = (batch_size, n)
-#         similarities = self.leakyrelu(similarities) #shape = (batch_size, n)
-#         return similarities
-
-
-# class SequentialLinkPredictor(BasicLinkPredictor):
-#     def __init__(self, n,
-#                  in_channels,
-#                  hidden_channels,
-#                  out_channels: Optional[int] = None,
-#                  num_layers = 2,
-#                  num_heads = 5,
-#                  dropout: float = 0.0,
-#                  encoder_model_name = 'GAT',
-#                  device = 'cpu'):
-#         super(SequentialLinkPredictor, self).__init__()
-#         self.n = n
-#         self.forward_dropout = nn.Dropout(p=dropout)
-#         self.backward_dropout = nn.Dropout(p=dropout)
-
-#         self.encoder_gnn_forward = self.select_model(encoder_model_name,
-#                                              in_channels,
-#                                              hidden_channels,
-#                                              num_layers,
-#                                              num_heads,
-#                                              out_channels,
-#                                              dropout)
-#         self.forward_layernorm = LayerNorm(out_channels, mode= 'node')
-#         self.backward_layernorm = LayerNorm(out_channels, mode= 'node')
-#         self.forward_linear = nn.Linear(out_channels, out_channels)
-#         self.backward_linear = nn.Linear(out_channels, out_channels)
-
-        
-#         self.encoder_gnn_backward = self.select_model(encoder_model_name,
-#                                               in_channels,
-#                                               hidden_channels,
-#                                               num_layers,
-#                                               num_heads,
-#                                               out_channels,
-#                                               dropout)
-#         # self.decoder_model = Sequential('x, edge_index','edge_weight', [
-#         #     nn.Dropout(p=dropout), 'x -> x',
-#         #     (self.decoder_activation, 'x, edge_index, edge_weight -> x'),
-#         #     LayerNorm(out_channels, mode= 'node'),
-#         #     nn.Linear(out_channels, out_channels),
-#         #     # nn.ReLU(inplace=True),
-#         # ])
-#         self.decoder_activation = nn.Softmax(dim = 1)
-#     def forward(self, x: Tensor,
-#                 edge_index: Tensor,
-#                 edge_weight: Optional[Tensor] = None,
-#                 edge_attr: Optional[Tensor] = None,
-#                 num_sampled_nodes_per_hop: Optional[List[int]] = None,
-#                 num_sampled_edges_per_hop: Optional[List[int]] = None):
-
-#         assert x.shape[0] == self.n
-#         new_x = self.forward_dropout(x)
-
-#         forward_embeddings = self.encoder_gnn_forward.forward(new_x, edge_index,
-#                                               edge_weight = edge_weight)
-        
-#         forward_embeddings = self.forward_layernorm(forward_embeddings)
-#         forward_embeddings = self.forward_linear(forward_embeddings)    
-
-#         backward_embeddings = self.encoder_gnn_backward.forward(new_x, edge_index, edge_weight = edge_weight)
-#         backward_embeddings = self.backward_layernorm(backward_embeddings)
-#         backward_embeddings = self.backward_linear(backward_embeddings)
-
-
-#         new_A = torch.matmul(forward_embeddings, backward_embeddings.T)
-#         row_sum = torch.sum(new_A, dim = 1)
-#         diag_norm = torch.norm(new_A.diagonal())
-#         # new_A = new_A.fill_diagonal_(0.0) #TODO-check
-#         # new_A = self.decoder_activation(new_A)
-
-#         return new_A, diag_norm, row_sum
-    
-
-# class EncoderLinkPredictor(BasicLinkPredictor):
-#     def __init__(self, n,
-#                  in_channels,
-#                  hidden_channels,
-#                  out_channels: Optional[int] = None,
-#                  num_layers = 2,
-#                  num_heads = 5,
-#                  dropout: float = 0.0,
-#                  encoder_model_name = 'GAT',
-#                  activate = 'relu',
-#                  device = 'cpu'):
-#         super(EncoderLinkPredictor, self).__init__()
-#         self.n = n
-#         self.encoder_forward_model = self.select_model(encoder_model_name,
-#                                              in_channels,
-#                                              hidden_channels,
-#                                              num_layers,
-#                                              num_heads,
-#                                              out_channels,
-#                                              dropout)
-#         self.encoder_norm = LayerNorm(out_channels, mode= 'node')
-#         self.encoder_backward_model = self.select_model(encoder_model_name,
-#                                               in_channels,
-#                                               hidden_channels,
-#                                               num_layers,
-#                                               num_heads,
-#                                               out_channels,
-#                                               dropout)
-#         self.decoder_norm = LayerNorm(out_channels, mode= 'node')
-#         self.linear = nn.Linear(n, n)
-#         self.relu = nn.ReLU(inplace = False)
-#         self.edge_norm = nn.LayerNorm((n, n), elementwise_affine=False, device = device)
-#         self.sigmoid = nn.Sigmoid()
-#         if activate == 'relu':
-#             self.decoder_activation = nn.ReLU(inplace = False)
-#         elif activate == 'softmax':
-#             self.decoder_activation = nn.Softmax(dim = 1)
-#         else:
-#             raise ValueError('activation function not supported')
-#     def forward(self, x: Tensor,
-#                 edge_index: Tensor,
-#                 edge_weight: Optional[Tensor] = None,
-#                 edge_attr: Optional[Tensor] = None,
-#                 num_sampled_nodes_per_hop: Optional[List[int]] = None,
-#                 num_sampled_edges_per_hop: Optional[List[int]] = None):
-
-#         assert x.shape[0] == self.n
-
-#         forward_embeddings = self.encoder_forward_model.forward(x, edge_index,
-#                                               edge_weight = edge_weight,
-#                                               edge_attr = edge_attr,
-#                                               num_sampled_nodes_per_hop = num_sampled_nodes_per_hop,
-#                                               num_sampled_edges_per_hop = num_sampled_edges_per_hop)
-#         #TODO do I need this?
-#         forward_embeddings = self.encoder_norm(forward_embeddings)
-        
-#         backward_embeddings = self.encoder_backward_model.forward(x, edge_index,
-#                                                               edge_weight = edge_weight,
-#                                                               edge_attr = edge_attr,
-#                                                               num_sampled_nodes_per_hop = num_sampled_nodes_per_hop,
-#                                                               num_sampled_edges_per_hop = num_sampled_edges_per_hop)
-#         backward_embeddings = self.decoder_norm(backward_embeddings)
-        
-#         new_A = torch.matmul(forward_embeddings, backward_embeddings.T)
-#         new_A = self.linear(new_A)
-#         row_sum = torch.sum(new_A, dim = 1)
-#         diag_norm = torch.norm(new_A.diagonal())
-#         return new_A, diag_norm, row_sum
-
+        output = self.final_linear(node_emb)
+        return output.squeeze(1)
