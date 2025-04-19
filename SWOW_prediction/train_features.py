@@ -541,6 +541,8 @@ def main(config_path='SWOW_prediction/config_features.yml', **kwargs):
     
     config['baseline'] = baseline
     config['reduce'] = reduce
+    config['data_name'] = kwargs['data_name']
+    config['property'] = kwargs['property']
     
     
     os.makedirs(config['test_results_path'], exist_ok=True)
@@ -560,6 +562,8 @@ def main(config_path='SWOW_prediction/config_features.yml', **kwargs):
     print(f"- Eval: {config['eval']}")
     print(f"- Train section: {config['train_section']}")
     print(f"- Eval section: {config['eval_section']}")
+    print(f"- Property: {config['property']}")
+    print(f"- Data name: {config['data_name']}")
     
     
     if not config['eval']:
@@ -570,27 +574,26 @@ def main(config_path='SWOW_prediction/config_features.yml', **kwargs):
 
 if __name__ == '__main__':
     import argparse
-    
-    parser = argparse.ArgumentParser(description='SWOW Prediction')
-    parser.add_argument('--config_path', type=str, default='SWOW_prediction/config_features.yml',
-                        help='Path to configuration file')
-    parser.add_argument('--section', type=int, default=-1,
-                        help='Training section')
-    parser.add_argument('--eval_section', type=int, default=-1,
-                        help='Evaluation section')
-    parser.add_argument('--baseline', action='store_true',
-                        help='Use baseline model')
-    parser.add_argument('--reduce', type=str, default='forward',
-                        help='Reduction method')
-    
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config_path', type=str, default='SWOW_prediction/config_features.yml')
+    parser.add_argument('--section', type=int, default=-1)
+    parser.add_argument('--eval_section', default=-1)
+    parser.add_argument('--baseline', dest='baseline', action='store_true')
+    parser.add_argument('--reduce', default='forward')
+    parser.add_argument('--data_name', default='coha',type=str)
+    parser.add_argument('--property', default='previous_link', type=str)
+
+
+    parser.set_defaults(baseline=False)
     args = parser.parse_args()
+    main(args.config_path, section = args.section, 
+         eval_section = args.eval_section,
+         baseline = args.baseline,
+         reduce = args.reduce,
+         data_name = args.data_name,
+         property = args.property)
     
-    main(
-        args.config_path,
-        section=args.section,
-        eval_section=args.eval_section,
-        baseline=args.baseline,
-        reduce=args.reduce
-    )
+
+    
 
 
