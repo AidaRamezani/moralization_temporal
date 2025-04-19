@@ -15,7 +15,7 @@ year=$($SLURM_ARRAY_TASK_ID)
 
 model='bert-base-uncased' 
 
-python SWOW_prediction/data_preprocessing.py --data nyt --year $year --model $model --function encoding --length 200 ;
-python SWOW_prediction/data_preprocessing.py --data nyt --year $year --model $model --function embedding --length 200 ;
-python SWOW_prediction/data_preprocessing.py --data nyt --year $year --model $model --function graph --length 200 ;
-python SWOW_prediction/data_preprocessing.py --data nyt --year $year --model $model --function sentiment --length 200 ;
+python SWOW_prediction/data_preprocessing.py --data nyt --data_path data/NYT/ --year $year --model $model --function encoding --length 200 ;
+python SWOW_prediction/data_preprocessing.py --data nyt --data_path data/NYT/ --year $year --model $model --function embedding --length 200 ;
+python SWOW_prediction/data_preprocessing.py --data nyt --data_path data/NYT/ --year $year --model $model --function graph --length 200 ;
+python SWOW_prediction/data_preprocessing.py --data nyt --data_path data/NYT/ --year $year --model $model --function sentiment --length 200 ;

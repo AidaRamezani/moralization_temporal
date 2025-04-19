@@ -1,4 +1,5 @@
 import pickle
+import warnings
 import torch
 import numpy as np
 import pandas as pd
@@ -95,6 +96,35 @@ def get_nyt_data(year: int, data_path: str) -> List[str]:
     return [item['article'] for item in data]
 
 
+def get_custom_data(time_point, data_path: str) -> List[str]:
+    """
+    General function to load custom data at a specific time point.
+
+    Args:
+        time_point: The time point to load data for. Your dataset should be diachronic. We train the model on the 
+        last time point and test on all other time points. 
+
+        data_path: Path to the directory containing your custom dataset. 
+
+    Returns:
+        List of article texts
+
+    Note: 
+        - This is a sample function that reads all .txt files from a specific directory, and returns them. 
+        If you have a different format, please modify this function accordingly.
+    """
+
+    time_point_directory = os.path.join(data_path, str(time_point))
+    if not os.path.exists(time_point_directory):
+        raise FileNotFoundError(f"Directory {time_point_directory} does not exist.")
+    texts = []
+    for filename in os.listdir(time_point_directory):
+        if filename.endswith('.txt'):
+            with open(os.path.join(time_point_directory, filename), 'r', encoding='utf-8') as file:
+                text = file.read()
+                texts.append(text)
+    return texts
+
 def get_data(data_name: str, data_path: str, **kwargs) -> List[str]:
     """
     Load data from the specified source.
@@ -121,7 +151,11 @@ def get_data(data_name: str, data_path: str, **kwargs) -> List[str]:
     elif data_name == 'nyt':
         return get_nyt_data(year, data_path)
     else:
-        raise ValueError(f"Unsupported data name: {data_name}, please add your own data processing function here")
+        warnings.warn(f"Unknown data source: {data_name}. Using custom data.")
+        return get_custom_data(year, data_path)
+    
+    
+       
 
 
 def get_two_grams() -> Tuple[List[str], List[str]]:
