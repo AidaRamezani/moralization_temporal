@@ -12,11 +12,34 @@ This repository contains code and data for replicating the following work: Ramez
 If you want to reproduce this framework using your own diachronic data, instead of COHA or NYY, you need to follow the steps below:
 1. **Data Preprocessing**: Add your own data reading functions inside ```SWOW_prediction/data_preprocessing_utils.py```. Your function should retrun List[str] where each element is an article/utterance/paragraph/... from a specific time point in your datasest. Look at the ```get_coha_data``` and ```get_nyt_data``` for sample implementations.
 
+    - **Note**: We have implemented the ```get_custom_data``` which is called inside the ```get_data``` function in ```SWOW_prediction/data_preprocessing_utils.py```. If you wish to use this function, split your dataset into time points (e.g., years), and put .txt files inside the ```<path_to_your_data>/<your_time_point>/``` directory. For example, if you have a dataset with 3 years of data, you should have the following directory structure: 
+    ``` 
+    <path_to_your_data>
+    ├── 2010
+    │   ├── article1.txt
+    │   ├── article2.txt
+    │   └── ...
+    ├── 2011
+    │   ├── article1.txt
+    │   ├── article2.txt
+    │   └── ...
+    ├── 2012
+    │   ├── article1.txt
+    │   ├── article2.txt
+    │   └── ...
+    ```
+    The function will read all the .txt files inside the directory and return a list of strings, where each string is the content of a .txt file. 
+    
+
 2. **Modify configuration**: Modify the ```SWOW_prediction/config_features.yml``` file to include your own data. You should modify ```data_name```, ```data_path```, and ```data_features``` according to your data specification. 
 
-3. **Adding new scripts**: Add a script ```scripts/data_job_<your_data_name>.sh``` to run the data preprocessing and model training. You can use ```scripts/data_job_nyt.sh``` as a template. Make sure to adjust the ```SBATCH --array=1987-2007``` to be in the range of your data. Run this scripts using slurm job scheduler to preprocess your data and store it. 
+3. **Adding new scripts**: Add a script ```scripts/data_job_<your_data_name>.sh``` to run the data preprocessing and model training. You can use ```scripts/data_job_nyt.sh``` as a template. Make sure to adjust the ```SBATCH --array=1987-2007``` to be in the range of your data. Run this scripts using slurm job scheduler to preprocess your data and store it. This might take a couple of hours to finish depending on the size of your data. We used parallel jobs to speed up.
+
+   - **Note**: The ```data_job_<your_data_name>.sh``` script will run the ```SWOW_prediction/data_preprocessing.py``` script, which will call the function you added in step 1. 
+
 
 4. **Training**: Similarly, modify the scripts ```scripts/training_job.sh``` and ```scripts/evaluation_job.sh``` and ```scripts/historical_inference.sh``` to include your own data. After modifying, run these scripts sequentially to train your model and evaluate it on your data. Your results will be saved in the ```data/SWOW_prediction/eval/time_series``` directory.
+
 
 
 
@@ -62,7 +85,6 @@ Congressional speech record dataset is available at (https://data.stanford.edu/c
 #### Installation
 
 You need ```Python 3.10.13``` with the following dependencies.
-
 ```
 beautifulsoup4==4.13.3
 en_core_web_sm==3.7.0
@@ -93,8 +115,6 @@ scipy==1.14.1
 
 ```notebooks/SWOW_prediction_coha.ipynb``` shows our evaluation performance on COHA.
 
-
-
 ```notebooks/SWOW_prediction_nyt.ipynb``` shows our evaluation performance on NYT.
 
 ```notebooks/fig1.ipynb``` reproduces display item 1a.
@@ -105,13 +125,11 @@ scipy==1.14.1
 ```notebooks/display_item_2.ipynb``` reproduces display items 2c and 2d.
 
 
+```notebooks/data_size.ipynb``` shows the number of concepts in COHA and NYT datasets.
+
+
 ```notebooks/battle.ipynb``` compares moral scores (moral relevance and moral polarity) before and after international wars and conflicts (display items 2e and 2f).
 
-
-
-
-
-```notebooks/data_size.ipynb``` shows the number of concepts in COHA and NYT datasets.
 
 ```notebooks/change_detection.ipynb``` identfies concepts with the sharpest change in moral relevance and moral polarity scores over time.
 
@@ -120,6 +138,10 @@ scipy==1.14.1
 
 
 ```notebooks/coha_correlation.ipynb``` computes pair-wise correlation in different conceptual categories.
+
+```notebooks/frequency_category.ipynb``` studies the relationship between moral relevance and frequency of conceptual categories.
+
+```notebooks/direct_indirect_moralization.ipynb``` compares direct and indirect moralization using average_mfdness scores.
 
 ```notebooks/congress_speech.ipynb``` predicts congressional speech frequencies based on moral scores.
 
@@ -136,13 +158,17 @@ scipy==1.14.1
 
 #### Scripts
 
-If you wish to generate new moral association scores using alternative textual corpora, add appropriate data reading functions to the ```get_data``` function inside ```SWOW_prediction/data_preprocessing.py```, and modify the scripts ```scripts/data_job_coha.sh```, and ```scripts/historical_inference.sh``` accordingly. 
+If you wish to generate new moral association scores using alternative textual corpora, add appropriate data reading functions to the ```get_data``` function inside ```SWOW_prediction/data_preprocessing.py```, and modify the scripts ```scripts/data_job_coha.sh```, and ```scripts/historical_inference.sh``` accordingly. (See above for details on how to add your own data). 
 
 If you wish to train a new model based on your custom textual data, you should also modify and run the ```scripts/training_job.sh``` script. Otherwise, this script will reproduce our models for COHA and NYT datasets.
 
 Other configurations can be modified in ```SWOW_prediction/config_features.yml```.
 
 Run ```scripts/evaluation_job.sh``` and ```scripts/historical_inference.sh``` after training to apply the models on contemporary and historical textual corpora. 
+
+Modify ```SWOW_prediction/models.py``` if you wish to change the model architecture.
+
+
 
 #### Demo visualization
 https://warz.shinyapps.io/MoralityVisualizer/.
