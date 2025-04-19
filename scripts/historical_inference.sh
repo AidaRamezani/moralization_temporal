@@ -29,3 +29,8 @@ done
 
 python SWOW_prediction/store_dataframes.py --data coha --config_path SWOW_prediction/config_features.yml 
 python SWOW_prediction/store_dataframes.py --data nyt --config_path SWOW_prediction/config_features.yml
+
+# The following lines are used for calculate average mfdness scores at each time point.
+
+python SWOW_prediction/average_mfdness.py --data coha
+python SWOW_prediction/average_mfdness.py --data nyt
