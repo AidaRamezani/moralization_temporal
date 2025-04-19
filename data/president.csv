@@ -1,0 +1,67 @@
+YEAR,PRESIDENT,VICE PRESIDENT
+1789-1797,George Washington,John Adams
+1797-1801,John Adams,Thomas Jefferson
+1801-1805,Thomas Jefferson,Aaron Burr
+1805-1809,Thomas Jefferson,George Clinton
+1809-1812,James Madison,George Clinton
+1812-1813,James Madison,None
+1813-1814,James Madison,Elbridge Gerry
+1814-1817,James Madison,None
+1817-1825,James Monroe,Daniel D. Tompkins
+1825-1829,John Quincy Adams,John C. Calhoun
+1829-1832,Andrew Jackson,John C. Calhoun
+1833-1837,Andrew Jackson,Martin Van Buren
+1837-1841,Martin Van Buren,Richard M. Johnson
+1841,William Henry Harrison,John Tyler
+1841-1845,John Tyler,None
+1845-1849,James K. Polk,George M. Dallas
+1849-1850,Zachary Taylor,Millard Fillmore
+1850-1853,Millard Fillmore,None
+1853,Franklin Pierce,William R. King
+1853-1857,Franklin Pierce,office vacant
+1857-1861,James Buchanan,John C. Breckinridge
+1861-1865,Abraham Lincoln,Hannibal Hamlin
+1865,Abraham Lincoln,Andrew Johnson
+1865-1869,Andrew Johnson,None
+1869-1873,Ulysses S. Grant,Schuyler Colfax
+1873-1875,Ulysses S. Grant,Henry Wilson
+1875-1877,Ulysses S. Grant,office vacant
+1877-1881,Rutherford B. Hayes,William A. Wheeler
+1881,James A. Garfield,Chester A. Arthur
+1881-1885,Chester A. Arthur,office vacant
+1885,Grover Cleveland,Thomas A. Hendricks
+1885-1889,Grover Cleveland,office vacant
+1889-1893,Benjamin Harrison,Levi P. Morton
+1893-1897,Grover Cleveland,Adlai E. Stevenson
+1897-1899,William McKinley,Garret A. Hobart
+1899-1901,William McKinley,None
+1901,William McKinley,Theodore Roosevelt
+1901-1905,Theodore Roosevelt,office vacant
+1905-1909,Theodore Roosevelt,Charles W. Fairbanks
+1909-1912,William H. Taft,James S. Sherman
+1912-1913,William H. Taft,None
+1913-1921,Woodrow Wilson,Thomas R. Marshall
+1921-1923,Warren G. Harding,Calvin Coolidge
+1923-1925,Calvin Coolidge,None
+1925-1929,Calvin Coolidge,Charles G. Dawes
+1929-1933,Herbert Hoover,Charles Curtis
+1933-1941,Franklin D. Roosevelt,John N. Garner
+1941-1945,Franklin D. Roosevelt,Henry A. Wallace
+1945,Franklin D. Roosevelt,Harry S. Truman
+1945-1949,Harry S. Truman,None
+1949-1953,Harry S. Truman,"Barkley, Alben W."
+1953-1961,Dwight D. Eisenhower,Richard M. Nixon
+1961-1963,John F. Kennedy,Lyndon B. Johnson
+1963-1965,Lyndon B. Johnson,None
+1965-1969,Lyndon B. Johnson,Hubert H. Humphrey
+1969-1973,Richard M. Nixon,Spiro T. Agnew
+1973-1974,Richard M. Nixon,Gerald R. Ford
+1974-1977,Gerald R. Ford,Nelson Rockefeller
+1977-1981,Jimmy Carter,Walter F. Mondale
+1981-1989,Ronald Reagan,George Bush
+1989-1993,George H. W. Bush,Dan Quayle
+1993-2001,William J. Clinton,Albert Gore
+2001-2009,George W. Bush,Richard Cheney
+2009-2017,Barack Obama,Joseph R. Biden
+2017-2021,Donald J. Trump,Mike Pence
+2021-,Joseph R. Biden,Kamala Harris
