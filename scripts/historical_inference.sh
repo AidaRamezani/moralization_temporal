@@ -24,3 +24,8 @@ do
         done
     done
 done 
+
+#The following lines are for storing the timeseries dataframes for the coha and nyt datasets.
+
+python SWOW_prediction/store_dataframes.py --data coha --config_path SWOW_prediction/config_features.yml 
+python SWOW_prediction/store_dataframes.py --data nyt --config_path SWOW_prediction/config_features.yml
