@@ -930,7 +930,7 @@ def get_textual_data_input_with_sections(
     storing_dir = kwargs.get('storing_dir', './data/SWOW_prediction')
     
     for i, year in enumerate(years):
-        store_dir = os.path.join(storing_dir, f'data_{data_name}_{year}_{model_name}.pkl')
+        store_dir = os.path.join(storing_dir, f'data_{data_name}_{year}_{model_name}.pkl') 
         
         if not os.path.exists(store_dir):
             print(f"Warning: {store_dir} does not exist. Run data preprocessing first.")
@@ -1117,7 +1117,7 @@ def construct_property_dataset(
     for i in range(len(vocab_mapping_reverse)):
         word = vocab_mapping_reverse.get(i)
         if word and word in embedding_data:
-            embedding_tensor[i] = embedding_data[word]
+            embedding_tensor[i] = torch.tensor(embedding_data[word])
     
     
     edge_indices = [

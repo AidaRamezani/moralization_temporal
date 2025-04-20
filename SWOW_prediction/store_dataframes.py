@@ -60,6 +60,8 @@ if __name__ == '__main__':
 
     word_count = word_count.groupby(['word','year'])['count'].mean().to_dict()
     ts_df['word_count'] = ts_df.apply(lambda x: word_count.get((x['words'], x['year']), 0), axis=1)
+
+    # Normalizing moral association scores
     mean_values = ts_df.groupby(['train_section','property'])['outputs'].mean().to_dict()
     std_values = ts_df.groupby(['train_section','property'])['outputs'].std().to_dict()
     ts_df['outputs_z'] = [(o - mean_values[s,p]) / std_values[s, p] for o ,w, y , p,s in
