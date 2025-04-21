@@ -112,10 +112,11 @@ scipy==1.14.1
 ```
 
 #### Experiments
+If you wish to reproduce the experiments and figures reported in the paper, you can run the following notebooks.
 
-```notebooks/SWOW_prediction_coha.ipynb``` shows our evaluation performance on COHA.
+```notebooks/SWOW_prediction_coha.ipynb``` shows our evaluation performance on COHA (These results are in the Supplementary Information).
 
-```notebooks/SWOW_prediction_nyt.ipynb``` shows our evaluation performance on NYT.
+```notebooks/SWOW_prediction_nyt.ipynb``` shows our evaluation performance on NYT (These results are in the Supplementary Information).
 
 ```notebooks/fig1.ipynb``` reproduces display item 1a.
 
@@ -131,13 +132,13 @@ scipy==1.14.1
 ```notebooks/battle.ipynb``` compares moral scores (moral relevance and moral polarity) before and after international wars and conflicts (display items 2e and 2f).
 
 
-```notebooks/change_detection.ipynb``` identfies concepts with the sharpest change in moral relevance and moral polarity scores over time.
+```notebooks/change_detection.ipynb``` identfies concepts with the sharpest change in moral relevance and moral polarity scores over time (Tables are reported in the Supplementary Information). 
 
 
 ```notebooks/coha_category_eval.ipynb``` shows our results for moralization in conceptual categories.
 
 
-```notebooks/coha_correlation.ipynb``` computes pair-wise correlation in different conceptual categories.
+```notebooks/coha_correlation.ipynb``` computes pair-wise correlation in different conceptual categories (display item 3b).
 
 ```notebooks/frequency_category.ipynb``` studies the relationship between moral relevance and frequency of conceptual categories.
 
