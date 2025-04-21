@@ -3,6 +3,7 @@ import torch
 import numpy as np
 import pandas as pd
 from scipy import stats
+import yaml
 from transformers import BertTokenizerFast, BertModel, AutoModel, RobertaModel, RobertaTokenizerFast
 from transformers import AutoTokenizer, CLIPTextModelWithProjection
 
@@ -59,4 +60,33 @@ def get_tokenizer(model_name):
         tokenizer.sep_token = tokenizer.eos_token
     
     return tokenizer
+
+
+def get_likelihood_loss(reduction='sum', device='cuda'):
+    """Create a Gaussian negative log likelihood loss function."""
+    loss_function = torch.nn.GaussianNLLLoss(reduction=reduction)
+    
+    def loss_wrapper(input, output):
+        var = torch.ones_like(input, requires_grad=False).to(device)
+        return loss_function(input, output, var)
+    
+    return loss_wrapper
+
+def get_l1_regularization(model, lambda_value=0.0):
+    """Calculate L1 regularization for model parameters."""
+    if lambda_value == 0.0:
+        return 0.0
+        
+    l1_parameters = [param.view(-1) for name, param in model.named_parameters() 
+                     if 'bias' not in name]
+    
+    return lambda_value * torch.abs(torch.cat(l1_parameters)).sum()
+
+
+
+def get_config(config_path='src/SWOW_prediction/config_features.yml'):
+    """Load configuration from YAML file."""
+    with open(config_path) as f:
+        config = yaml.safe_load(f)
+    return config
 
