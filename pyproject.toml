@@ -1,0 +1,26 @@
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_third_party = ["numpy", "pandas"]
+
+[tool.mypy]
+python_version = 3.10
+ignore_missing_imports = true
+strict = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+fix = true
+select = ["ALL"]
+ignore = ["E501"]  # Ignore line length enforcement if using black
+exclude = ["migrations/"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
