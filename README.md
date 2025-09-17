@@ -177,3 +177,4 @@ https://warz.shinyapps.io/MoralityVisualizer/.
 ```notebooks/fig1.ipynb``` reproduces display item 1a, and can be modified to explore other concepts (expected time to run: 1 minute).
 
 
+Note: Reproducing all experiments provided in notebooks will take approximately 10 minutes on a normal desktop computer. Timing required for training new models might take around 1-5 hours depending on your system specifications (e.g., number of gpus). 
