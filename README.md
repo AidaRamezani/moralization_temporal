@@ -178,3 +178,11 @@ https://warz.shinyapps.io/MoralityVisualizer/.
 
 
 Note: Reproducing all experiments provided in notebooks will take approximately 10 minutes on a normal desktop computer. Timing required for training new models might take around 1-5 hours depending on your system specifications (e.g., number of gpus). 
+
+
+## License
+- Released under the [MIT License](https://opensource.org/license/mit).  
+- Model weights not released as part of this repository.  
+
+Please cite our paper if you use this repository in your work.
+
