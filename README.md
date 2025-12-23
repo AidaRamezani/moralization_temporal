@@ -1,9 +1,10 @@
 Please visit OSF to download the data: [https://osf.io/kjynq/files?view_only=f10e01eba9c54779b5de469e489a4e5b](https://osf.io/kjynq/files?view_only=f10e01eba9c54779b5de469e489a4e5b)
 
 
-### Historical reconstruction of human moralization
+### Historical reconstruction of human moralization with word association and text corpora
 
-This repository contains code and data for replicating the following work: Ramezani, Stellar, Feinberg, and Xu. (submitted) Historical reconstruction of human moralization.
+ This repository contains code and data for replicating the following work: Ramezani, Stellar, Feinberg, and Xu. (in press) Historical reconstruction of human moralization with word association and text corpora. Nature Communications.
+
 
 
 
